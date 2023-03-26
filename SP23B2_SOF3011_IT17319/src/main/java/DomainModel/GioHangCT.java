@@ -6,7 +6,9 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "GioHangChiTiet")
+
 public class GioHangCT {
+
     @Id
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "IdGioHang", insertable = false, updatable = false)
