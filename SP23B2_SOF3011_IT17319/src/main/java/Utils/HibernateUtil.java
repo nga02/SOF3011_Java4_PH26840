@@ -1,8 +1,6 @@
 package Utils;
 
-import DomainModel.ChucVu;
-//import DomainModel.KhachHang;
-import DomainModel.KhachHang;
+import DomainModel.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -28,6 +26,17 @@ public class HibernateUtil {
         conf.setProperties(properties);
         conf.addAnnotatedClass(KhachHang.class);
         conf.addAnnotatedClass(ChucVu.class);
+        conf.addAnnotatedClass(CuaHang.class);
+        conf.addAnnotatedClass(DongSP.class);
+        conf.addAnnotatedClass(SanPham.class);
+        conf.addAnnotatedClass(ChiTietSP.class);
+        conf.addAnnotatedClass(MauSac.class);
+        conf.addAnnotatedClass(NhaSX.class);
+        conf.addAnnotatedClass(NhanVien.class);
+        conf.addAnnotatedClass(GioHang.class);
+//        conf.addAnnotatedClass(GioHangCT.class);
+        conf.addAnnotatedClass(HoaDon.class);
+//        conf.addAnnotatedClass(HoaDonCT.class);
 
         ServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .applySettings(conf.getProperties()).build();
