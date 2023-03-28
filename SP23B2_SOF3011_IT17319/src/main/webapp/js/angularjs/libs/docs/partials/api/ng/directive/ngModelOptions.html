@@ -71,7 +71,7 @@ should also invoke <a href="api/ng/type/ngModel.NgModelController#$rollbackViewV
 order to make sure it is synchronized with the model and that any debounced action is canceled.</p>
 <p>The easiest way to reference the control&#39;s <a href="api/ng/type/ngModel.NgModelController#$rollbackViewValue"><code>ngModel.NgModelController</code></a>
 method is by making sure the input is placed inside a form that has a <code>name</code> attribute. This is
-important because <code>form</code> Controllers are published to the related scope under the name in their
+important because <code>form</code> controllers are published to the related scope under the name in their
 <code>name</code> attribute.</p>
 <p>Any pending changes will take place immediately when an enclosing form is submitted via the
 <code>submit</code> event. Note that <code>ngClick</code> events will occur before the model is updated. Use <code>ngSubmit</code>

@@ -82,7 +82,7 @@
         <div class="row">
             <div class="col-6">
                 <label>Tên đệm</label>
-                <input type="text" name="ten_dem" class="form-control" required/>
+                <input type="text" name="tenDem" class="form-control" required/>
                 <p id="error_tendem"></p>
             </div>
             <div class="col-6">
@@ -94,7 +94,7 @@
         <div class="row">
             <div class="col-6">
                 <label>Ngày sinh</label>
-                <input type="date" name="ngay_sinh" class="form-control" required/>
+                <input type="date" name="ngaySinh" class="form-control" required/>
                 <p id="error_date"></p>
             </div>
             <div class="col-6">
@@ -106,19 +106,19 @@
         <div class="row">
             <div class="col-6">
                 <label>Địa chỉ</label>
-                <input type="text" name="dia_chi" class="form-control" required/>
+                <input type="text" name="diaChi" class="form-control" required/>
                 <p id="error_diachi"></p>
             </div>
             <div class="col-6">
                 <label>Mật khẩu</label>
-                <input type="password" name="mat_khau" class="form-control" required/>
+                <input type="password" name="matKhau" class="form-control" required/>
                 <p id="error_pass"></p>
             </div>
         </div>
         <div class="row">
             <div class="col-6">
                 <label>Quốc gia</label>
-                <select name="quoc_gia" class="form-select">
+                <select name="quocGia" class="form-select">
                     <option>Việt Nam</option>
                     <option>Lào</option>
                     <option>Campuchia</option>
@@ -126,7 +126,7 @@
             </div>
             <div class="col-6">
                 <label>Thành phố</label>
-                <select name="thanh_pho" class="form-select">
+                <select name="thanhPho" class="form-select">
                     <option>Hà Nội</option>
                     <option>Đà Nẵng</option>
                 </select>

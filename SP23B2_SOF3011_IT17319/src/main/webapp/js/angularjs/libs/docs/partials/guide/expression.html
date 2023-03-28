@@ -121,7 +121,7 @@ the method from your view. If you want to <code>eval()</code> an AngularJS expre
 <a href="api/ng/service/$parse">$parse</a> service processes these expressions.</p>
 <p>AngularJS expressions do not have direct access to global variables like <code>window</code>, <code>document</code> or <code>location</code>.
 This restriction is intentional. It prevents accidental access to the global state – a common source of subtle bugs.</p>
-<p>Instead use services like <code>$window</code> and <code>$location</code> in functions on Controllers, which are then called from expressions.
+<p>Instead use services like <code>$window</code> and <code>$location</code> in functions on controllers, which are then called from expressions.
 Such services provide mockable access to globals.</p>
 <p>It is possible to access the context object using the identifier <code>this</code> and the locals object using the
 identifier <code>$locals</code>.</p>
@@ -177,7 +177,7 @@ forgiving we&#39;d have to write bindings that clutter the code, for example: <c
 <h2 id="no-control-flow-statements">No Control Flow Statements</h2>
 <p>Apart from the ternary operator (<code>a ? b : c</code>), you cannot write a control flow statement in an
 expression. The reason behind this is core to the AngularJS philosophy that application logic should
-be in Controllers, not the views. If you need a real conditional, loop, or to throw from a view
+be in controllers, not the views. If you need a real conditional, loop, or to throw from a view
 expression, delegate to a JavaScript method instead.</p>
 <h2 id="no-function-declarations-or-regexp-creation-with-literal-notation">No function declarations or RegExp creation with literal notation</h2>
 <p>You can&#39;t declare functions or create regular expressions from within AngularJS expressions. This is

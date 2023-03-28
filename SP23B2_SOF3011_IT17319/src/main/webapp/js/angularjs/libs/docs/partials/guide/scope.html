@@ -13,7 +13,7 @@ model mutations.</p>
 </li>
 <li><p>Scopes provide APIs (<a href="api/ng/type/$rootScope.Scope#$apply">$apply</a>) to
 propagate any model changes through the system into the view from outside of the &quot;AngularJS
-realm&quot; (Controllers, services, AngularJS event handlers).</p>
+realm&quot; (controllers, services, AngularJS event handlers).</p>
 </li>
 <li><p>Scopes can be nested to limit access to the properties of application components while providing
 access to shared model properties. Nested scopes are either &quot;child scopes&quot; or &quot;isolate scopes&quot;.
@@ -31,9 +31,9 @@ scope which defines the <code>username</code> property.</p>
 <a href="api/ng/type/$rootScope.Scope#$watch"><code>$watch</code></a> expressions on the scope. The
 <code>$watch</code> allows the directives to be notified of property changes, which allows the directive to
 render the updated value to the DOM.</p>
-<p>Both Controllers and directives have reference to the scope, but not to each other. This
+<p>Both controllers and directives have reference to the scope, but not to each other. This
 arrangement isolates the controller from the directive as well as from the DOM. This is an important
-point since it makes the Controllers view agnostic, which greatly improves the testing story of
+point since it makes the controllers view agnostic, which greatly improves the testing story of
 the applications.</p>
 <p>
 
@@ -247,7 +247,7 @@ used to propagate model values to the DOM.</p>
 </li>
 <li><p><strong>Model mutation</strong></p>
 <p>For mutations to be properly observed, you should make them only within the <a href="api/ng/type/$rootScope.Scope#$apply">scope.$apply()</a>. AngularJS APIs do this
-implicitly, so no extra <code>$apply</code> call is needed when doing synchronous work in Controllers,
+implicitly, so no extra <code>$apply</code> call is needed when doing synchronous work in controllers,
 or asynchronous work with <a href="api/ng/service/$http">$http</a>, <a href="api/ng/service/$timeout">$timeout</a>
 or <a href="api/ng/service/$interval">$interval</a> services.</p>
 </li>
@@ -287,14 +287,14 @@ See the <a href="guide/directive#isolating-the-scope-of-a-directive">directives 
 more information about isolate scopes in custom directives.</p>
 <p>Note also that component directives, which are created with the
 <a href="api/ng/type/angular.Module#component">.component()</a> helper always create an isolate scope.</p>
-<h3 id="controllers-and-scopes">Controllers and Scopes</h3>
-<p>Scopes and Controllers interact with each other in the following situations:</p>
+<h3 id="controllers-and-scopes">controllers and Scopes</h3>
+<p>Scopes and controllers interact with each other in the following situations:</p>
 <ul>
-<li><p>Controllers use scopes to expose controller methods to templates (see <a href="api/ng/directive/ngController">ng-controller</a>).</p>
+<li><p>controllers use scopes to expose controller methods to templates (see <a href="api/ng/directive/ngController">ng-controller</a>).</p>
 </li>
-<li><p>Controllers define methods (behavior) that can mutate the model (properties on the scope).</p>
+<li><p>controllers define methods (behavior) that can mutate the model (properties on the scope).</p>
 </li>
-<li><p>Controllers may register <a href="api/ng/type/$rootScope.Scope#$watch">watches</a> on
+<li><p>controllers may register <a href="api/ng/type/$rootScope.Scope#$watch">watches</a> on
 the model. These watches execute immediately after the controller behavior executes.</p>
 </li>
 </ul>
@@ -328,7 +328,7 @@ re-renders the view based on DOM changes.</li>
 splits the JavaScript into classical and AngularJS execution context. Only operations which are
 applied in the AngularJS execution context will benefit from AngularJS data-binding, exception handling,
 property watching, etc... You can also use $apply() to enter the AngularJS execution context from JavaScript. Keep in
-mind that in most places (Controllers, services) $apply has already been called for you by the
+mind that in most places (controllers, services) $apply has already been called for you by the
 directive which is handling the event. An explicit call to $apply is needed only when
 implementing custom event callbacks, or when working with third-party library callbacks.</p>
 <ol>

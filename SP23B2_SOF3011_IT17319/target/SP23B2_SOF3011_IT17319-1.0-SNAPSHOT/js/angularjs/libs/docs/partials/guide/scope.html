@@ -287,14 +287,14 @@ See the <a href="guide/directive#isolating-the-scope-of-a-directive">directives 
 more information about isolate scopes in custom directives.</p>
 <p>Note also that component directives, which are created with the
 <a href="api/ng/type/angular.Module#component">.component()</a> helper always create an isolate scope.</p>
-<h3 id="controllers-and-scopes">Controllers and Scopes</h3>
+<h3 id="controllers-and-scopes">controllers and Scopes</h3>
 <p>Scopes and controllers interact with each other in the following situations:</p>
 <ul>
-<li><p>Controllers use scopes to expose controller methods to templates (see <a href="api/ng/directive/ngController">ng-controller</a>).</p>
+<li><p>controllers use scopes to expose controller methods to templates (see <a href="api/ng/directive/ngController">ng-controller</a>).</p>
 </li>
-<li><p>Controllers define methods (behavior) that can mutate the model (properties on the scope).</p>
+<li><p>controllers define methods (behavior) that can mutate the model (properties on the scope).</p>
 </li>
-<li><p>Controllers may register <a href="api/ng/type/$rootScope.Scope#$watch">watches</a> on
+<li><p>controllers may register <a href="api/ng/type/$rootScope.Scope#$watch">watches</a> on
 the model. These watches execute immediately after the controller behavior executes.</p>
 </li>
 </ul>

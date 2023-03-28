@@ -33,7 +33,7 @@ are accessed through bindings.</li>
 <li>Controller — The <code>ngController</code> directive specifies a Controller class; the class contains business
 logic behind the application to decorate the scope with functions and values</li>
 </ul>
-<p>Note that you can also attach Controllers to the DOM by declaring it in a route definition
+<p>Note that you can also attach controllers to the DOM by declaring it in a route definition
 via the <a href="api/ngRoute/service/$route">$route</a> service. A common mistake is to declare the controller
 again using <code>ng-controller</code> in the template itself.  This will cause the controller to be attached
 and executed twice.</p>
@@ -128,8 +128,8 @@ and in this guide. However, there are advantages to binding properties directly 
 and avoiding scope.</p>
 <ul>
 <li>Using <code>controller as</code> makes it obvious which controller you are accessing in the template when
-multiple Controllers apply to an element.</li>
-<li>If you are writing your Controllers as classes you have easier access to the properties and
+multiple controllers apply to an element.</li>
+<li>If you are writing your controllers as classes you have easier access to the properties and
 methods, which will appear on the scope, from inside the controller code.</li>
 <li>Since there is always a <code>.</code> in the bindings, you don&#39;t have to worry about prototypal
 inheritance masking primitives.</li>

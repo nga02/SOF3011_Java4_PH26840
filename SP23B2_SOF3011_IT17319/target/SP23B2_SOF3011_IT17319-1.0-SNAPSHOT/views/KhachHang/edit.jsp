@@ -16,43 +16,46 @@
             crossorigin="anonymous"
     />
     <script>
-        function Validate(){
+        function Validate() {
             var ho = document.myForm.ho.value;
-            var tendem = document.myForm.ten_dem.value;
+            var tendem = document.myForm.tenDem.value;
             var ten = document.myForm.ten.value;
-            var diachi = document.myForm.dia_chi.value;
-            var ngaysinh = document.myForm.ngay_sinh.value;
+            var diachi = document.myForm.diaChi.value;
+            var ngaysinh = document.myForm.ngaySinh.value;
             var sdt = document.myForm.sdt.value;
-            var mk = document.myForm.mat_khau.value;
+            var mk = document.myForm.matKhau.value;
             var vnf_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
 
-            if(ho==""){
-                document.getElementById("error_ho").innerHTML="Không để trống trường họ";
+            if (ho == "") {
+                document.getElementById("error_ho").innerHTML = "Không để trống trường họ";
             }
-            if(tendem==""){
-                document.getElementById("error_tendem").innerHTML="Không để trống trường tên đệm";
-            } if(ten==""){
-                document.getElementById("error_ten").innerHTML="Không để trống trường tên";
-            } if(diachi==""){
-                document.getElementById("error_diachi").innerHTML="Không để trống trường địa chỉ";
-            } if(ngaysinh==""){
-                document.getElementById("error_ngaysinh").innerHTML="Không để trống trường ngày sinh";
-            }if(sdt==""){
-                document.getElementById("error_sdt").innerHTML="Không để trống trường số điện thoại";
-            }else if(!vnf_regex.test(sdt)){
-                document.getElementById("error_sdt").innerHTML="Sdt không đúng định dạng";
+            if (tendem == "") {
+                document.getElementById("error_tendem").innerHTML = "Không để trống trường tên đệm";
+            }
+            if (ten == "") {
+                document.getElementById("error_ten").innerHTML = "Không để trống trường tên";
+            }
+            if (diachi == "") {
+                document.getElementById("error_diachi").innerHTML = "Không để trống trường địa chỉ";
+            }
+            if (ngaysinh == "") {
+                document.getElementById("error_ngaysinh").innerHTML = "Không để trống trường ngày sinh";
+            }
+            if (sdt == "") {
+                document.getElementById("error_sdt").innerHTML = "Không để trống trường số điện thoại";
+            } else if (!vnf_regex.test(sdt)) {
+                document.getElementById("error_sdt").innerHTML = "Sdt không đúng định dạng";
                 return;
             }
-            if(mk==""){
-                document.getElementById("error_pass").innerHTML="Không để trống trường mật khẩu";
-            }
-            else if(mk.length<7 || mk.length>15){
-                document.getElementById("error_pass").innerHTML="Mật khẩu phải nằm trong khoảng từ 7 đến 15 kí tự";
+            if (mk == "") {
+                document.getElementById("error_pass").innerHTML = "Không để trống trường mật khẩu";
+            } else if (mk.length < 7 || mk.length > 15) {
+                document.getElementById("error_pass").innerHTML = "Mật khẩu phải nằm trong khoảng từ 7 đến 15 kí tự";
             }
         }
     </script>
     <style>
-        .form-group p{
+        .form-group p {
             color: red;
         }
     </style>
@@ -76,7 +79,7 @@
         <div class="row">
             <div class="col-6">
                 <label>Tên đệm</label>
-                <input type="text" name="ten_dem" class="form-control" value="${ qlkh.ten_dem}" required/>
+                <input type="text" name="tenDem" class="form-control" value="${ qlkh.tenDem}" required/>
                 <p id="error_tendem"></p>
             </div>
             <div class="col-6">
@@ -88,7 +91,7 @@
         <div class="row">
             <div class="col-6">
                 <label>Ngày sinh</label>
-                <input type="date" name="ngay_sinh" class="form-control" value="${ qlkh.ngay_sinh}" required/>
+                <input type="date" name="ngaySinh" class="form-control" value="${ qlkh.ngaySinh}" required/>
                 <p id="error_date"></p>
             </div>
             <div class="col-6">
@@ -100,30 +103,30 @@
         <div class="row">
             <div class="col-6">
                 <label>Địa chỉ</label>
-                <input type="text" name="dia_chi" class="form-control" value="${qlkh.dia_chi}" required/>
+                <input type="text" name="diaChi" class="form-control" value="${qlkh.diaChi}" required/>
                 <p id="error_diachi"></p>
             </div>
             <div class="col-6">
                 <label>Mật khẩu</label>
-                <input type="password" name="mat_khau" class="form-control" value="${qlkh.mat_khau}" required/>
+                <input type="password" name="matKhau" class="form-control" value="${qlkh.matKhau}" required/>
                 <p id="error_pass"></p>
             </div>
         </div>
         <div class="row">
             <div class="col-6">
                 <label>Quốc gia</label>
-                <select name="quoc_gia" class="form-select"/>
-                <option value="Việt Nam" ${ qlkh.quoc_gia == "Việt Nam" ? "selected" : "" } >Việt Nam</option>
-                <option value="Thái Lan" ${ qlkh.quoc_gia == "Thái Lan" ? "selected" : "" }>Thái Lan</option>
-                <option value="Campuchia" ${ qlkh.quoc_gia == "Campuchia" ? "selected" : "" }>Campuchia</option>
+                <select name="quocGia" class="form-select"/>
+                <option value="Việt Nam" ${ qlkh.quocGia == "Việt Nam" ? "selected" : "" } >Việt Nam</option>
+                <option value="Thái Lan" ${ qlkh.quocGia == "Thái Lan" ? "selected" : "" }>Thái Lan</option>
+                <option value="Campuchia" ${ qlkh.quocGia == "Campuchia" ? "selected" : "" }>Campuchia</option>
                 </select>
             </div>
             <div class="col-6">
                 <label>Thành phố</label>
-                <select name="thanh_pho" class="form-select"/>
-                <option value="Hà Nội" ${ qlkh.thanh_pho == "Hà Nội" ? "selected" : "" } >Hà Nội</option>
-                <option value="Đà Nẵng" ${ qlkh.thanh_pho == "Đà Nẵng" ? "selected" : "" }>Đà Nẵng</option>
-                <option value="Hồ Chí Minh" ${ qlkh.thanh_pho == "Hồ Chí Minh" ? "selected" : "" }>Hồ Chí Minh</option>
+                <select name="thanhPho" class="form-select"/>
+                <option value="Hà Nội" ${ qlkh.thanhPho == "Hà Nội" ? "selected" : "" } >Hà Nội</option>
+                <option value="Đà Nẵng" ${ qlkh.thanhPho == "Đà Nẵng" ? "selected" : "" }>Đà Nẵng</option>
+                <option value="Hồ Chí Minh" ${ qlkh.thanhPho == "Hồ Chí Minh" ? "selected" : "" }>Hồ Chí Minh</option>
                 </select>
             </div>
         </div>
@@ -131,7 +134,6 @@
             <div class="col-6">
                 <button class="btn btn-primary" onclick="Validate()">Update</button>
             </div>
-
         </div>
     </form>
 </div>

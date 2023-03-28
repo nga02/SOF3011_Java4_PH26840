@@ -101,10 +101,10 @@ myModule.directive(&#39;directiveName&#39;, function factory(injectables) {
 });
 </code></pre>
 <h3 id="life-cycle-hooks">Life-cycle hooks</h3>
-<p>Directive Controllers can provide the following methods that are called by AngularJS at points in the life-cycle of the
+<p>Directive controllers can provide the following methods that are called by AngularJS at points in the life-cycle of the
 directive:</p>
 <ul>
-<li><code>$onInit()</code> - Called on each controller after all the Controllers on an element have been constructed and
+<li><code>$onInit()</code> - Called on each controller after all the controllers on an element have been constructed and
 had their bindings initialized (and before the pre &amp; post linking functions for the directives on
 this element). This is a good place to put initialization code for your controller.</li>
 <li><code>$onChanges(changesObj)</code> - Called whenever one-way (<code>&lt;</code>) or interpolation (<code>@</code>) bindings are updated. The
@@ -365,7 +365,7 @@ cannot be applied to the same element.</li>
 allow a component to have its properties bound to the controller, rather than to scope.</p>
 <p>After the controller is instantiated, the initial values of the isolate scope bindings will be bound to the controller
 properties. You can access these bindings once they have been initialized by providing a controller method called
-<code>$onInit</code>, which is called after all the Controllers on an element have been constructed and had their bindings
+<code>$onInit</code>, which is called after all the controllers on an element have been constructed and had their bindings
 initialized.</p>
 <p>It is also possible to set <code>bindToController</code> to an object hash with the same format as the <code>scope</code> property.
 This will set up the scope bindings to the controller directly. Note that <code>scope</code> can still be used
@@ -408,19 +408,19 @@ The <code>$transclude</code> function also has a method on it, <code>$transclude
 <ul>
 <li>a <strong>string</strong> containing the name of the directive to pass to the linking function</li>
 <li>an <strong>array</strong> containing the names of directives to pass to the linking function. The argument passed to the
-linking function will be an array of Controllers in the same order as the names in the <code>require</code> property</li>
+linking function will be an array of controllers in the same order as the names in the <code>require</code> property</li>
 <li>an <strong>object</strong> whose property values are the names of the directives to pass to the linking function. The argument
 passed to the linking function will also be an object with matching keys, whose values will hold the corresponding
-Controllers.</li>
+controllers.</li>
 </ul>
-<p>If the <code>require</code> property is an object and <code>bindToController</code> is truthy, then the required Controllers are
-bound to the controller using the keys of the <code>require</code> property. This binding occurs after all the Controllers
+<p>If the <code>require</code> property is an object and <code>bindToController</code> is truthy, then the required controllers are
+bound to the controller using the keys of the <code>require</code> property. This binding occurs after all the controllers
 have been constructed but before <code>$onInit</code> is called.
 If the name of the required controller is the same as the local name (the key), the name can be
 omitted. For example, <code>{parentDir: &#39;^^&#39;}</code> is equivalent to <code>{parentDir: &#39;^^parentDir&#39;}</code>.
 See the <a href="api/ng/provider/$compileProvider#component"><code>$compileProvider</code></a> helper for an example of how this can be used.
 If no such required directive(s) can be found, or if the directive does not have a controller, then an error is
-raised (unless no link function is specified and the required Controllers are not being bound to the directive
+raised (unless no link function is specified and the required controllers are not being bound to the directive
 controller, in which case error checking is skipped). The name can be prefixed with:</p>
 <ul>
 <li>(no prefix) - Locate the required controller on the current element. Throw an error if not found.</li>
@@ -569,7 +569,7 @@ already been linked.</p>
 between all directive linking functions.</p>
 </li>
 <li><p><code>controller</code> - the directive&#39;s required controller instance(s) - Instances are shared
-among all directives, which allows the directives to use the Controllers as a communication
+among all directives, which allows the directives to use the controllers as a communication
 channel. The exact value depends on the directive&#39;s <code>require</code> property:</p>
 <ul>
 <li>no controller(s) required: the directive&#39;s own controller, or <code>undefined</code> if it doesn&#39;t have one</li>
@@ -582,7 +582,7 @@ otherwise the <a href="error/$compile/ctreq">Missing Required Controller</a> err
 any other controller.</p>
 </li>
 <li><p><code>transcludeFn</code> - A transclude linking function pre-bound to the correct transclusion scope.
-This is the same as the <code>$transclude</code> parameter of directive Controllers,
+This is the same as the <code>$transclude</code> parameter of directive controllers,
 see <a href="api/ng/service/$compile#-controller-">the controller section for details</a>.
 <code>function([scope], cloneLinkingFn, futureParentElement)</code>.</p>
 </li>
@@ -941,7 +941,7 @@ directives; if given, it will be passed through to the link functions of
 directives found in <code>element</code> during compilation.</li>
 <li><code>transcludeControllers</code> - an object hash with keys that map controller names
 to a hash with the key <code>instance</code>, which maps to the controller instance;
-if given, it will make the Controllers available to directives on the compileNode:<pre><code>{
+if given, it will make the controllers available to directives on the compileNode:<pre><code>{
   parent: {
     instance: parentControllerInstance
   }

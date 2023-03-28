@@ -1,11 +1,11 @@
-package Controllers.admin;
+package controllers.admin;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import org.apache.commons.beanutils.BeanUtils;
-import Repository.NSXRepository;
+import repository.NSXRepository;
 import View_models.QLNSX;
 
 import java.io.IOException;

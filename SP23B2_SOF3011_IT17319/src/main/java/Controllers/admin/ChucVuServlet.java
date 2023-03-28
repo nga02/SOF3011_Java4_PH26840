@@ -1,5 +1,6 @@
-package Controllers.admin;
+package controllers.admin;
 
+import DomainModel.ChucVu;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -8,7 +9,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
 import org.apache.commons.beanutils.BeanUtils;
-import Repository.ChucVuRepository;
+import repository.ChucVuRepository;
 import View_models.QLChucVu;
 
 
@@ -25,8 +26,6 @@ public class ChucVuServlet extends HttpServlet {
 
     public ChucVuServlet() {
         this.cvRepo = new ChucVuRepository();
-        cvRepo.insert(new QLChucVu("CV01", "Nhân viên"));
-        cvRepo.insert(new QLChucVu("CV02", "Trưởng phòng"));
     }
 
     @Override
@@ -39,12 +38,50 @@ public class ChucVuServlet extends HttpServlet {
             this.create(request, response);
         } else if (uri.contains("edit") == true) {
             this.edit(request, response);
-        }
-        else if (uri.contains("delete") == true) {
+        } else if (uri.contains("delete") == true) {
             this.delete(request, response);
         } else {
             this.index(request, response);
         }
+    }
+
+    private void create(HttpServletRequest request,
+                        HttpServletResponse response
+    ) throws ServletException, IOException {
+        request.setAttribute("view", "/views/ChucVu/create.jsp");
+        request.getRequestDispatcher("/views/layout.jsp")
+                .forward(request, response);
+    }
+
+    private void edit(HttpServletRequest request,
+                      HttpServletResponse response
+    ) throws ServletException, IOException {
+        String ma = request.getParameter("ma");
+        ChucVu cv = this.cvRepo.findByMa(ma);
+        request.setAttribute("qlcv", cv);
+        request.setAttribute("view", "/views/ChucVu/edit.jsp");
+        request.getRequestDispatcher("/views/layout.jsp")
+                .forward(request, response);
+
+    }
+
+    private void delete(HttpServletRequest request,
+                        HttpServletResponse response
+    ) throws ServletException, IOException {
+        String ma = request.getParameter("ma");
+        ChucVu cv = cvRepo.findByMa(ma);
+        this.cvRepo.delete(cv);
+        response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/chuc-vu/index");
+    }
+
+    private void index(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws ServletException, IOException {
+        request.setAttribute("ds", cvRepo.findAll());
+        request.setAttribute("view", "/views/ChucVu/index.jsp");
+        request.getRequestDispatcher("/views/layout.jsp")
+                .forward(request, response);
     }
 
     @Override
@@ -54,38 +91,20 @@ public class ChucVuServlet extends HttpServlet {
         String uri = request.getRequestURI();
         if (uri.contains("store")) {
             this.store(request, response);
-        }else if(uri.contains("update")){
-            this.update(request,response);
-        }else{
-//            this.index(request,response);
+        } else if (uri.contains("update")) {
+            this.update(request, response);
+        } else {
             response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/chuc-vu/index");
         }
     }
 
-    protected void index(
-            HttpServletRequest request,
-            HttpServletResponse response
-    ) throws ServletException, IOException {
-        request.setAttribute("ds", cvRepo.findAll());
-        request.setAttribute("view", "/views/ChucVu/index.jsp");
-        request.getRequestDispatcher("/views/layout.jsp")
-                .forward(request, response);
-    }
-//    --------------------------------------
-    private void create(HttpServletRequest request,
-                       HttpServletResponse response
-    ) throws ServletException, IOException {
-        request.setAttribute("view","/views/ChucVu/create.jsp");
-        request.getRequestDispatcher("/views/layout.jsp")
-                .forward(request, response);
-    }
 
     private void store(HttpServletRequest request,
-                      HttpServletResponse response
-    ) throws ServletException, IOException{
-        QLChucVu cv = new QLChucVu();
+                       HttpServletResponse response
+    ) throws ServletException, IOException {
+        ChucVu cv = new ChucVu();
         try {
-            BeanUtils.populate(cv,request.getParameterMap());
+            BeanUtils.populate(cv, request.getParameterMap());
             this.cvRepo.insert(cv);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
@@ -95,26 +114,13 @@ public class ChucVuServlet extends HttpServlet {
         response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/chuc-vu/index");
     }
 
-//edit
-
-    private void edit(HttpServletRequest request,
-                       HttpServletResponse response
+    private void update(HttpServletRequest request,
+                        HttpServletResponse response
     ) throws ServletException, IOException {
         String ma = request.getParameter("ma");
-        QLChucVu vm = this.cvRepo.findByMa(ma);
-        request.setAttribute("qlcv", vm);
-        request.setAttribute("view","/views/ChucVu/edit.jsp");
-        request.getRequestDispatcher("/views/layout.jsp")
-                .forward(request, response);
-
-    }
-
-    private void update(HttpServletRequest request,
-                       HttpServletResponse response
-    ) throws ServletException, IOException{
-        QLChucVu cv = new QLChucVu();
+        ChucVu cv = this.cvRepo.findByMa(ma);
         try {
-            BeanUtils.populate(cv,request.getParameterMap());
+            BeanUtils.populate(cv, request.getParameterMap());
             this.cvRepo.update(cv);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
@@ -123,17 +129,4 @@ public class ChucVuServlet extends HttpServlet {
         }
         response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/chuc-vu/index");
     }
-
-//    ________________________________________________
-
-    private void delete(HttpServletRequest request,
-                       HttpServletResponse response
-    ) throws ServletException, IOException {
-        String ma = request.getParameter("ma");
-        QLChucVu vm = cvRepo.findByMa(ma);
-        this.cvRepo.delete(vm);
-        response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/chuc-vu/index");
-    }
-
-
 }

@@ -15,9 +15,9 @@ or when providing <code>run</code> and <code>config</code> blocks for a module.<
 defined by an injectable factory method or constructor function, and can be injected with
 &quot;services&quot;, &quot;values&quot;, and &quot;constants&quot; as dependencies.</p>
 </li>
-<li><p><a href="api/ng/service/$controller">Controllers</a> are defined by a constructor function, which can be injected
+<li><p><a href="api/ng/service/$controller">controllers</a> are defined by a constructor function, which can be injected
 with any of the &quot;service&quot; and &quot;value&quot; as dependencies, but they can also be provided with
-&quot;special dependencies&quot;. See <a href="guide/di#controllers">Controllers</a> below for a list of these
+&quot;special dependencies&quot;. See <a href="guide/di#controllers">controllers</a> below for a list of these
 special dependencies.</p>
 </li>
 <li><p>The <a href="api/ng/type/angular.Module#run"><code>run</code></a> method accepts a function, which can be injected with
@@ -62,10 +62,10 @@ above.</p>
   // ...
 }]);
 </code></pre>
-<h3 id="controllers">Controllers</h3>
-<p>Controllers are &quot;classes&quot; or &quot;constructor functions&quot; that are responsible for providing the
+<h3 id="controllers">controllers</h3>
+<p>controllers are &quot;classes&quot; or &quot;constructor functions&quot; that are responsible for providing the
 application behavior that supports the declarative markup in the template. The recommended way of
-declaring Controllers is using the array notation:</p>
+declaring controllers is using the array notation:</p>
 <pre><code class="lang-js">someModule.controller(&#39;MyController&#39;, [&#39;$scope&#39;, &#39;dep1&#39;, &#39;dep2&#39;, function($scope, dep1, dep2) {
   ...
   $scope.aMethod = function() {
@@ -75,9 +75,9 @@ declaring Controllers is using the array notation:</p>
 }]);
 </code></pre>
 <p>Unlike services, there can be many instances of the same type of controller in an application.</p>
-<p>Moreover, additional dependencies are made available to Controllers:</p>
+<p>Moreover, additional dependencies are made available to controllers:</p>
 <ul>
-<li><a href="guide/scope"><code>$scope</code></a>: Controllers are associated with an element in the DOM and so are
+<li><a href="guide/scope"><code>$scope</code></a>: controllers are associated with an element in the DOM and so are
 provided with access to the <a href="guide/scope">scope</a>. Other components (like services) only have
 access to the <a href="api/ng/service/$rootScope"><code>$rootScope</code></a> service.</li>
 <li><a href="api/ngRoute/provider/$routeProvider#when">resolves</a>: If a controller is instantiated as part of a route,

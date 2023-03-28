@@ -8,7 +8,7 @@ these objects are instantiated and wired together automatically by the <a href="
 <p>The injector creates two types of objects, <strong>services</strong> and <strong>specialized objects</strong>.</p>
 <p>Services are objects whose API is defined by the developer writing the service.</p>
 <p>Specialized objects conform to a specific AngularJS framework API. These objects are one of
-Controllers, directives, filters or animations.</p>
+controllers, directives, filters or animations.</p>
 <p>The injector needs to know how to create these objects. You tell it by registering a &quot;recipe&quot; for
 creating your object with the injector. There are five recipe types.</p>
 <p>The most verbose, but also the most comprehensive one is a Provider recipe. The remaining four
@@ -185,7 +185,7 @@ to make them available in both the configuration and run phases. This is what th
 is for.</p>
 <p>Let&#39;s say that our <code>unicornLauncher</code> service can stamp a unicorn with the planet name it&#39;s being
 launched from if this name was provided during the configuration phase. The planet name is
-application specific and is used also by various Controllers during the runtime of the application.
+application specific and is used also by various controllers during the runtime of the application.
 We can then define the planet name as a constant like this:</p>
 <pre><code class="lang-javascript">myApp.constant(&#39;planetName&#39;, &#39;Greasy Giant&#39;);
 </code></pre>
@@ -236,7 +236,7 @@ on the <code>planetName</code> constant we&#39;ve just defined and displays the 
   &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-<p>Using Factory recipes, you can also define AngularJS&#39;s filters and animations, but the Controllers
+<p>Using Factory recipes, you can also define AngularJS&#39;s filters and animations, but the controllers
 are a bit special. You create a controller as a custom type that declares its dependencies as
 arguments for its constructor function. This constructor is then registered with a module. Let&#39;s
 take a look at the <code>DemoController</code>, created in one of the early examples:</p>
@@ -245,7 +245,7 @@ take a look at the <code>DemoController</code>, created in one of the early exam
 }]);
 </code></pre>
 <p>The DemoController is instantiated via its constructor, every time the app needs an instance of
-DemoController (in our simple app it&#39;s just once). So unlike services, Controllers are not
+DemoController (in our simple app it&#39;s just once). So unlike services, controllers are not
 singletons. The constructor is called with all the requested services, in our case the <code>clientId</code>
 service.</p>
 <h2 id="conclusion">Conclusion</h2>

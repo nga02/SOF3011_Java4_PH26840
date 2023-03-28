@@ -1,11 +1,11 @@
-package Controllers.admin;
+package controllers.admin;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import org.apache.commons.beanutils.BeanUtils;
-import Repository.SanPhamRepository;
+import repository.SanPhamRepository;
 import View_models.QLSanPham;
 
 import java.io.IOException;

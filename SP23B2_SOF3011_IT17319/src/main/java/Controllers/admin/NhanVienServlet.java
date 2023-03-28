@@ -1,4 +1,4 @@
-package Controllers.admin;
+package controllers.admin;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -6,7 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.commons.beanutils.BeanUtils;
-import Repository.NhanVienRepository;
+import repository.NhanVienRepository;
 import View_models.QLNhanVien;
 
 import java.io.IOException;

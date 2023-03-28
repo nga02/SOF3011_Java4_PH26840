@@ -1,4 +1,4 @@
-package Controllers.admin;
+package controllers.admin;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -7,7 +7,7 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 
 import org.apache.commons.beanutils.BeanUtils;
-import Repository.DongSPRepository;
+import repository.DongSPRepository;
 import View_models.QLDongSP;
 
 import java.lang.reflect.InvocationTargetException;

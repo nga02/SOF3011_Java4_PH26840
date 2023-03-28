@@ -1,10 +1,10 @@
 <a href='https://github.com/angular/angular.js/edit/v1.8.x/docs/content/guide/controller.ngdoc?message=docs(guide%2FControllers)%3A%20describe%20your%20change...' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
-<h1 id="understanding-controllers">Understanding Controllers</h1>
+<h1 id="understanding-controllers">Understanding controllers</h1>
 <p>In AngularJS, a Controller is defined by a JavaScript <strong>constructor function</strong> that is used to augment the
 <a href="guide/scope">AngularJS Scope</a>.</p>
-<p>Controllers can be attached to the DOM in different ways. For each of them, AngularJS will
+<p>controllers can be attached to the DOM in different ways. For each of them, AngularJS will
 instantiate a new Controller object, using the specified Controller&#39;s <strong>constructor function</strong>:</p>
 <ul>
 <li>the <a href="api/ng/directive/ngController">ngController</a> directive. A new <strong>child scope</strong> will be
@@ -23,8 +23,8 @@ be assigned to a property on the scope.</p>
 </ul>
 <p>Do not use controllers to:</p>
 <ul>
-<li>Manipulate DOM — Controllers should contain only business logic.
-Putting any presentation logic into Controllers significantly affects its testability. AngularJS
+<li>Manipulate DOM — controllers should contain only business logic.
+Putting any presentation logic into controllers significantly affects its testability. AngularJS
 has <a href="guide/databinding">databinding</a> for most cases and <a href="guide/directive">directives</a> to
 encapsulate manual DOM manipulation.</li>
 <li>Format input — Use <a href="guide/forms">AngularJS form controls</a> instead.</li>
@@ -35,8 +35,8 @@ services</a> instead.</li>
 </ul>
 <p>In general, a Controller shouldn&#39;t try to do too much. It should contain only the business logic
 needed for a single view.</p>
-<p>The most common way to keep Controllers slim is by encapsulating work that doesn&#39;t belong to
-controllers into services and then using these services in Controllers via dependency injection.
+<p>The most common way to keep controllers slim is by encapsulating work that doesn&#39;t belong to
+controllers into services and then using these services in controllers via dependency injection.
 This is discussed in the <a href="guide/di">Dependency Injection</a>  and  <a href="guide/services">Services</a> sections of this guide.</p>
 <h2 id="setting-up-the-initial-state-of-a-scope-object">Setting up the initial state of a <code>$scope</code> object</h2>
 <p>Typically, when you create an application you need to set up the initial state for the AngularJS
@@ -182,10 +182,10 @@ argument called <code>spice</code>. The template then refers to this Controller 
 constant <code>&#39;chili&#39;</code> in the binding for the first button and a model property <code>customSpice</code> (bound to an
 input box) in the second button.</p>
 <h2 id="scope-inheritance-example">Scope Inheritance Example</h2>
-<p>It is common to attach Controllers at different levels of the DOM hierarchy.  Since the
+<p>It is common to attach controllers at different levels of the DOM hierarchy.  Since the
 <a href="api/ng/directive/ngController">ng-controller</a> directive creates a new child scope, we get a
 hierarchy of scopes that inherit from each other.  The <code>$scope</code> that each Controller receives will
-have access to properties and methods defined by Controllers higher up the hierarchy.
+have access to properties and methods defined by controllers higher up the hierarchy.
 See <a href="https://github.com/angular/angular.js/wiki/Understanding-Scopes">Understanding Scopes</a> for
 more information about scope inheritance.</p>
 <p>
@@ -239,7 +239,7 @@ in <code>MainController</code> and the <code>name</code> property defined in <co
 </ul>
 <p>Inheritance works with methods in the same way as it does with properties. So in our previous
 examples, all of the properties could be replaced with methods that return string values.</p>
-<h2 id="testing-controllers">Testing Controllers</h2>
+<h2 id="testing-controllers">Testing controllers</h2>
 <p>Although there are many ways to test a Controller, one of the best conventions, shown below,
 involves injecting the <a href="api/ng/service/$rootScope">$rootScope</a> and <a href="api/ng/service/$controller">$controller</a>:</p>
 <p><strong>Controller Definition:</strong></p>

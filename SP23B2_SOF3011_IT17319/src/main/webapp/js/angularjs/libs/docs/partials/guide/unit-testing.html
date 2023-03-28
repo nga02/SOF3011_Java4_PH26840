@@ -82,7 +82,7 @@ modules so they are synchronous. Having tests synchronous keeps them much cleane
 with. One of the most useful parts of ngMock is <a href="api/ngMock/service/$httpBackend"><code>$httpBackend</code></a>, which lets us mock XHR
 requests in tests, and return sample data instead.</p>
 <h2 id="testing-a-controller">Testing a Controller</h2>
-<p>Because AngularJS separates logic from the view layer, it keeps Controllers easy to test. Let&#39;s take a
+<p>Because AngularJS separates logic from the view layer, it keeps controllers easy to test. Let&#39;s take a
 look at how we might test the controller below, which provides <code>$scope.grade</code>, which sets a property
 on the scope based on the length of the password.</p>
 <pre><code class="lang-js">angular.module(&#39;app&#39;, [])
@@ -100,11 +100,11 @@ on the scope based on the length of the password.</p>
   };
 });
 </code></pre>
-<p>Because Controllers are not available on the global scope, we need to use <a href="api/ngMock/function/angular.mock.inject"><code>angular.mock.inject</code></a> to inject our controller first. The first step is to use the <code>module</code> function,
+<p>Because controllers are not available on the global scope, we need to use <a href="api/ngMock/function/angular.mock.inject"><code>angular.mock.inject</code></a> to inject our controller first. The first step is to use the <code>module</code> function,
 which is provided by angular-mocks. This loads in the module it&#39;s given, so it is available in your
 tests. We pass this into <code>beforeEach</code>, which is a function Jasmine provides that lets us run code
 before each test. Then we can use <code>inject</code> to access <code>$controller</code>, the service that is responsible
-for instantiating Controllers.</p>
+for instantiating controllers.</p>
 <pre><code class="lang-js">describe(&#39;PasswordController&#39;, function() {
   beforeEach(module(&#39;app&#39;));
 

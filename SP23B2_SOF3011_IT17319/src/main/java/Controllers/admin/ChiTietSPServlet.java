@@ -1,10 +1,10 @@
-package Controllers.admin;
+package controllers.admin;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import org.apache.commons.beanutils.BeanUtils;
-import Repository.ChiTietSPRepository;
+import repository.ChiTietSPRepository;
 import View_models.QLCTSP;
 
 import java.io.IOException;

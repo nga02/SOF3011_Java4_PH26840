@@ -18,7 +18,7 @@ name, comment or CSS class) that tell AngularJS&#39;s <strong>HTML compiler</str
 to attach a specified behavior to that DOM element (e.g. via event listeners), or even to transform
 the DOM element and its children.</p>
 <p>AngularJS comes with a set of these directives built-in, like <code>ngBind</code>, <code>ngModel</code>, and <code>ngClass</code>.
-Much like you create Controllers and services, you can create your own directives for AngularJS to use.
+Much like you create controllers and services, you can create your own directives for AngularJS to use.
 When AngularJS <a href="guide/bootstrap">bootstraps</a> your application, the
 <a href="guide/compiler">HTML compiler</a> traverses the DOM matching directives against the DOM elements.</p>
 <div class="alert alert-info">
@@ -134,7 +134,7 @@ directives when possible.
 
 <h2 id="creating-directives">Creating Directives</h2>
 <p>First let&#39;s talk about the <a href="api/ng/provider/$compileProvider#directive">API for registering directives</a>. Much like
-Controllers, directives are registered on modules. To register a directive, you use the
+controllers, directives are registered on modules. To register a directive, you use the
 <code>module.directive</code> API. <code>module.directive</code> takes the
 <a href="guide/directive#matching-directives">normalized</a> directive name
 followed by a <strong>factory function.</strong> This factory function should return an object with the different
@@ -885,7 +885,7 @@ option, <code>$compile</code> will throw an error unless the specified controlle
 means that this directive searches for the controller on its parents. (A <code>^</code> prefix would make the
 directive look for the controller on its own element or its parents; without any prefix, the
 directive would look on its own element only.)</p>
-<p>So where does this <code>myTabs</code> controller come from? Directives can specify Controllers using
+<p>So where does this <code>myTabs</code> controller come from? Directives can specify controllers using
 the unsurprisingly named <code>controller</code> option. As you can see, the <code>myTabs</code> directive uses this
 option. Just like <code>ngController</code>, this option attaches a controller to the template of the directive.</p>
 <p>If it is necessary to reference the controller or any functions bound to the controller from the
@@ -895,7 +895,7 @@ in the case when the directive is used as a component.</p>
 <p>Looking back at <code>myPane</code>&#39;s definition, notice the last argument in its <code>link</code> function: <code>tabsCtrl</code>.
 When a directive requires a controller, it receives that controller as the fourth argument of its
 <code>link</code> function. Taking advantage of this, <code>myPane</code> can call the <code>addPane</code> function of <code>myTabs</code>.</p>
-<p>If multiple Controllers are required, the <code>require</code> option of the directive can take an array argument.
+<p>If multiple controllers are required, the <code>require</code> option of the directive can take an array argument.
 The corresponding parameter being sent to the <code>link</code> function will also be an array.</p>
 <pre><code class="lang-js">angular.module(&#39;docsTabsExample&#39;, [])
 .directive(&#39;myPane&#39;, function() {
@@ -906,9 +906,9 @@ The corresponding parameter being sent to the <code>link</code> function will al
     scope: {
       title: &#39;@&#39;
     },
-    link: function(scope, element, attrs, Controllers) {
-      var tabsCtrl = Controllers[0],
-          modelCtrl = Controllers[1];
+    link: function(scope, element, attrs, controllers) {
+      var tabsCtrl = controllers[0],
+          modelCtrl = controllers[1];
 
       tabsCtrl.addPane(scope);
     },
@@ -918,7 +918,7 @@ The corresponding parameter being sent to the <code>link</code> function will al
 </code></pre>
 <p>Savvy readers may be wondering what the difference is between <code>link</code> and <code>controller</code>.
 The basic difference is that <code>controller</code> can expose an API, and <code>link</code> functions can interact with
-Controllers using <code>require</code>.</p>
+controllers using <code>require</code>.</p>
 <div class="alert alert-success">
 <strong>Best Practice:</strong> use <code>controller</code> when you want to expose an API to other directives.
 Otherwise use <code>link</code>.

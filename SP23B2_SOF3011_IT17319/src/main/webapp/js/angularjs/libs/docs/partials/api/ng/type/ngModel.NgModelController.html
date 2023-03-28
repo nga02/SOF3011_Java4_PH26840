@@ -747,7 +747,7 @@ ngModel.$formatters.push(format);
      is delivered then the validation status will be set to true when fulfilled and false when rejected.
      When the asynchronous validators are triggered, each of the validators will run in parallel and the model
      value will only be updated once all validators have been fulfilled. As long as an asynchronous validator
-     is unfulfilled, its key will be added to the Controllers <code>$pending</code> property. Also, all asynchronous validators
+     is unfulfilled, its key will be added to the controllers <code>$pending</code> property. Also, all asynchronous validators
      will only run once all synchronous validators have passed.</p>
 <p>Please note that if $http is used then it is important that the server returns a success HTTP response code
 in order to fulfill the validation and a status level of <code>4xx</code> in order to reject the validation.</p>

@@ -42,30 +42,30 @@
         </tr>
         </thead>
         <tbody class="text-center">
-        <c:if test="${f:length(ds) == 0}">
-            <span>Không có dữ liệu</span>
-        </c:if>
-        <c:if test="${f:length(ds) != 0}">
-            <c:forEach items="${ ds }" var="kh">
-                <tr>
-                    <td>${ kh.ma }</td>
-                    <td>${ kh.ho }</td>
-                    <td>${ kh.ten_dem}</td>
-                    <td>${ kh.ten }</td>
-                    <td>${ kh.ngay_sinh }</td>
-                    <td>${ kh.sdt }</td>
-                    <td>${ kh.dia_chi }</td>
-                    <td>${ kh.thanh_pho }</td>
-                    <td>${ kh.quoc_gia }</td>
-                    <td>
-                        <a href="/SP23B2_SOF3011_IT17319_war_exploded/khach-hang/edit?ma=${ kh.ma }" class="btn btn-primary">Update</a>
-                    </td>
-                    <td>
-                        <a href="/SP23B2_SOF3011_IT17319_war_exploded/khach-hang/delete?ma=${ kh.ma }" class="btn btn-danger">Delete</a>
-                    </td>
-                </tr>
-            </c:forEach>
-        </c:if>
+            <c:if test="${f:length(ds) == 0}">
+                <span>Không có dữ liệu</span>
+            </c:if>
+            <c:if test="${f:length(ds) != 0}">
+                <c:forEach items="${ ds }" var="kh">
+                    <tr>
+                        <td>${ kh.ma }</td>
+                        <td>${ kh.ho }</td>
+                        <td>${ kh.tenDem}</td>
+                        <td>${ kh.ten }</td>
+                        <td>${ kh.ngaySinh }</td>
+                        <td>${ kh.sdt }</td>
+                        <td>${ kh.diaChi }</td>
+                        <td>${ kh.thanhPho }</td>
+                        <td>${ kh.quocGia }</td>
+                        <td>
+                            <a href="/SP23B2_SOF3011_IT17319_war_exploded/khach-hang/edit?ma=${ kh.ma }" class="btn btn-primary">Update</a>
+                        </td>
+                        <td>
+                            <a href="/SP23B2_SOF3011_IT17319_war_exploded/khach-hang/delete?ma=${ kh.ma }" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </c:if>
         </tbody>
     </table>
 </div>

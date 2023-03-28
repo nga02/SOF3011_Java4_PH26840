@@ -606,7 +606,7 @@ until no more listeners are firing. This means that it is possible to get into a
 loop. This function will throw <code>&#39;Maximum iteration limit exceeded.&#39;</code> if the number of
 iterations exceeds 10.</p>
 <p>Usually, you don&#39;t call <code>$digest()</code> directly in
-<a href="api/ng/directive/ngController">Controllers</a> or in
+<a href="api/ng/directive/ngController">controllers</a> or in
 <a href="api/ng/provider/$compileProvider#directive">directives</a>.
 Instead, you should call <a href="api/ng/type/$rootScope.Scope#$apply">$apply()</a> (typically from within
 a <a href="api/ng/provider/$compileProvider#directive">directive</a>), which will force a <code>$digest()</code>.</p>

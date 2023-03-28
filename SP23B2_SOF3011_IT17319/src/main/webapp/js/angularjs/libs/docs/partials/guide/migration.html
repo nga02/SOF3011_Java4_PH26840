@@ -470,7 +470,7 @@ runner.cancel();
 To migrate, add a <code>catch()</code> handler to your animation runners.</p>
 <h4 id="-controller-"><strong>$controller</strong></h4>
 <p><strong>Due to <a href="https://github.com/angular/angular.js/commit/e269c14425a3209040f65c022658770e00a36f16">e269c1</a></strong>,
-the option to instantiate Controllers from constructors on the global <code>window</code> object
+the option to instantiate controllers from constructors on the global <code>window</code> object
 has been removed. Likewise, the deprecated <code>$controllerProvider.allowGlobals()</code>
 method that could enable this behavior, has been removed.</p>
 <p>This behavior had been deprecated since AngularJS v1.3.0, because polluting the global scope
@@ -1310,7 +1310,7 @@ configuration block to you application:</p>
 an error thrown from a promise&#39;s <code>onFulfilled</code> or <code>onRejection</code> handlers is treated exactly the same
 as a regular rejection. Previously, it would also be passed to the <code>$exceptionHandler()</code> (in
 addition to rejecting the promise with the error as reason).</p>
-<p>The new behavior applies to all services/Controllers/filters etc that rely on <code>$q</code> (including
+<p>The new behavior applies to all services/controllers/filters etc that rely on <code>$q</code> (including
 built-in services, such as <code>$http</code> and <code>$route</code>). For example, <code>$http</code>&#39;s <code>transformRequest/Response</code>
 functions or a route&#39;s <code>redirectTo</code> function as well as functions specified in a route&#39;s <code>resolve</code>
 object, will no longer result in a call to <code>$exceptionHandler()</code> if they throw an error. Other than
@@ -1689,12 +1689,12 @@ execution would be aborted without firing a <code>$routeChangeError</code> event
 <p><hr /></p>
 <p><minor />
 <strong>Due to <a href="https://github.com/angular/angular.js/commit/7f4b356c2bebb87f0c26b57a20415b004b20bcd1">7f4b35</a></strong>,
-the <code>$route</code> service will no longer instantiate Controllers nor call <code>resolve</code> or
+the <code>$route</code> service will no longer instantiate controllers nor call <code>resolve</code> or
 <code>template</code>/<code>templateUrl</code> functions for routes that successfully <code>redirectTo</code> other routes.</p>
 <h2 id="migrating-from-1-4-to-1-5">Migrating from 1.4 to 1.5</h2>
 <p>AngularJS 1.5 takes a big step towards preparing developers for a smoother transition to Angular in
 the future. Architecting your applications using components, multi-slot transclusion, one-way
-bindings in isolate scopes, using lifecycle hooks in directive Controllers and relying on native ES6
+bindings in isolate scopes, using lifecycle hooks in directive controllers and relying on native ES6
 features (such as classes and arrow functions) are now all possible with AngularJS 1.5.</p>
 <p>This release includes numerous bug and security fixes, as well as performance improvements to core
 services, directives, filters and helper functions. Existing applications can start enjoying the
@@ -1708,13 +1708,13 @@ configure and promote best practices (plus can bring AngularJS applications clos
 style of architecture).</li>
 <li>Multi-slot transclusion: Enabling the design of more powerful and complex UI elements with a much
 simpler configuration and reduced boilerplate.</li>
-<li><code>$onInit</code> lifecycle hook: Introducing a new lifecycle hook for directive Controllers, called after
-all required Controllers have been constructed. This enables access to required Controllers from
+<li><code>$onInit</code> lifecycle hook: Introducing a new lifecycle hook for directive controllers, called after
+all required controllers have been constructed. This enables access to required controllers from
 a directive&#39;s controller, without having to rely on the linking function.</li>
 <li><code>ngAnimateSwap</code>: A new directive in <code>ngAnimate</code>, making it super easy to create rotating
 banner-like components.</li>
 <li>Testing helpers: New helper functions in <code>ngMock</code>, simplifying testing for animations, component
-Controllers and routing.</li>
+controllers and routing.</li>
 </ul>
 <p>Also, notable is the improved support for ES6 features, such as classes and arrow functions. These
 features are now more reliably detected and correctly handled within the core.</p>
@@ -2244,14 +2244,14 @@ using a filter such as <a href="https://github.com/petebacondarwin/angular-toArr
 the limitTo filter has changed behavior when the provided limit value is invalid.
 Now, instead of returning empty object/array, it returns unchanged input.</p>
 <h2 id="migrating-from-1-2-to-1-3">Migrating from 1.2 to 1.3</h2>
-<h3 id="controllers">Controllers</h3>
+<h3 id="controllers">controllers</h3>
 <p>Due to <a href="https://github.com/angular/angular.js/commit/3f2232b5a181512fac23775b1df4a6ebda67d018">3f2232b5</a>,
-<code>$controller</code> will no longer look for Controllers on <code>window</code>.
-The old behavior of looking on <code>window</code> for Controllers was originally intended
+<code>$controller</code> will no longer look for controllers on <code>window</code>.
+The old behavior of looking on <code>window</code> for controllers was originally intended
 for use in examples, demos, and toy apps. We found that allowing global controller
 functions encouraged poor practices, so we resolved to disable this behavior by
 default.</p>
-<p>To migrate, register your Controllers with modules rather than exposing them
+<p>To migrate, register your controllers with modules rather than exposing them
 as globals:</p>
 <p>Before:</p>
 <pre><code class="lang-javascript">function MyController() {
@@ -3177,7 +3177,7 @@ entire controller on the scope chain greatly increasing the exposed surface.</li
 <li>Don&#39;t get the kind of test coverage that JavaScript code would</li>
 </ol>
 <p>This commit provides a way, via a naming convention, to allow restricting properties from
-Controllers/scopes. This means AngularJS expressions can access only those properties that
+controllers/scopes. This means AngularJS expressions can access only those properties that
 are actually needed by the expressions.</p>
 <p>See <a href="https://github.com/angular/angular.js/commit/3d6a89e8888b14ae5cb5640464e12b7811853c7e">3d6a89e8</a>.</p>
 <h3 id="you-cannot-bind-to-select-multiple-">You cannot bind to select[multiple]</h3>
@@ -3193,7 +3193,7 @@ Closure, so AngularJS is not able to continue to support them:</p>
 <code>sr-cyrl-ba</code>, <code>sr-cyrl-me</code>, <code>sr-cyrl</code>, <code>sr-latn-ba</code>, <code>sr-latn-me</code>, <code>sr-latn</code>, <code>sr-rs</code>, <code>sv-fi</code>,
 <code>sw-ke</code>, <code>ta-lk</code>, <code>tl-ph</code>, <code>ur-in</code>, <code>zh-hans-hk</code>, <code>zh-hans-mo</code>, <code>zh-hans-sg</code>, <code>zh-hans</code>,
 <code>zh-hant-hk</code>, <code>zh-hant-mo</code>, <code>zh-hant-tw</code>, <code>zh-hant</code></p>
-<p>Although these locales were removed from the official AngularJS Repository, you can continue to
+<p>Although these locales were removed from the official AngularJS repository, you can continue to
 load and use your copy of the locale file provided that you maintain it yourself.</p>
 <p>See <a href="https://github.com/angular/angular.js/commit/6382e21fb28541a2484ac1a241d41cf9fbbe9d2c">6382e21f</a>.</p>
 <h3 id="services-can-now-return-functions">Services can now return functions</h3>
