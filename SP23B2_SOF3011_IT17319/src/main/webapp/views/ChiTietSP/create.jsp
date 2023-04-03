@@ -25,7 +25,7 @@
     <script>
         function Validate() {
 
-            var namBH = document.myForm.idNamBH.value.trim();
+            var namBH = document.myForm.namBH.value.trim();
             var moTa = document.myForm.mota.value.trim();
             var sl_ton = document.myForm.soLuongTon.value.trim();
             var gia_nhap = document.myForm.giaNhap.value.trim();
@@ -125,7 +125,6 @@
         <div class="row">
             <div class="col-6 text-center">
                 <button class="btn btn-primary" onclick="Validate()">Thêm mới</button>
-
             </div>
         </div>
     </form>

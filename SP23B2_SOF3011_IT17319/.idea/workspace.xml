@@ -239,6 +239,9 @@
       <workItem from="1680273748907" duration="660000" />
       <workItem from="1680444688986" duration="14282000" />
       <workItem from="1680503644840" duration="13905000" />
+      <workItem from="1680523269057" duration="217000" />
+      <workItem from="1680527262349" duration="972000" />
+      <workItem from="1680530619341" duration="2324000" />
     </task>
     <servers />
   </component>
@@ -269,6 +272,6 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/SP23B2_SOF3011_IT17319$Tomcat_10_1_7.ic" NAME="Tomcat 10.1.7 Coverage Results" MODIFIED="1680509072834" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/SP23B2_SOF3011_IT17319$Tomcat_10_1_7.ic" NAME="Tomcat 10.1.7 Coverage Results" MODIFIED="1680530853522" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
