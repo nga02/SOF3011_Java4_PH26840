@@ -7,10 +7,10 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.UUID;
 
 import org.apache.commons.beanutils.BeanUtils;
 import repository.ChucVuRepository;
-import View_models.QLChucVu;
 
 
 @WebServlet({
@@ -56,8 +56,8 @@ public class ChucVuServlet extends HttpServlet {
     private void edit(HttpServletRequest request,
                       HttpServletResponse response
     ) throws ServletException, IOException {
-        String ma = request.getParameter("ma");
-        ChucVu cv = this.cvRepo.findByMa(ma);
+        UUID id_CV = UUID.fromString(request.getParameter("id"));
+        ChucVu cv = this.cvRepo.findById(id_CV);
         request.setAttribute("qlcv", cv);
         request.setAttribute("view", "/views/ChucVu/edit.jsp");
         request.getRequestDispatcher("/views/layout.jsp")
@@ -68,8 +68,8 @@ public class ChucVuServlet extends HttpServlet {
     private void delete(HttpServletRequest request,
                         HttpServletResponse response
     ) throws ServletException, IOException {
-        String ma = request.getParameter("ma");
-        ChucVu cv = cvRepo.findByMa(ma);
+        UUID id_CV = UUID.fromString(request.getParameter("id"));
+        ChucVu cv = this.cvRepo.findById(id_CV);
         this.cvRepo.delete(cv);
         response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/chuc-vu/index");
     }
@@ -117,8 +117,8 @@ public class ChucVuServlet extends HttpServlet {
     private void update(HttpServletRequest request,
                         HttpServletResponse response
     ) throws ServletException, IOException {
-        String ma = request.getParameter("ma");
-        ChucVu cv = this.cvRepo.findByMa(ma);
+        UUID id_CV = UUID.fromString(request.getParameter("id_cv"));
+        ChucVu cv = this.cvRepo.findById(id_CV);
         try {
             BeanUtils.populate(cv, request.getParameterMap());
             this.cvRepo.update(cv);

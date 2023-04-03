@@ -2,15 +2,17 @@ package DomainModel;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.util.UUID;
 
 @Entity
 @Table(name = "NhanVien")
 public class NhanVien {
     @Id
     @Column(name = "Id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     @Column(name = "Ma")
     private String ma;
@@ -39,7 +41,6 @@ public class NhanVien {
     @Column(name = "MatKhau")
     private String matKhau;
 
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "IdCH")
     private CuaHang idCH;
@@ -58,7 +59,7 @@ public class NhanVien {
     public NhanVien() {
     }
 
-    public NhanVien(String id, String ma, String ten, String tenDem, String ho, String gioiTinh, Date ngaySinh, String diaChi, String sdt, String matKhau, CuaHang idCH, ChucVu idCV, NhanVien idGuiBC, int trangThai) {
+    public NhanVien(UUID id, String ma, String ten, String tenDem, String ho, String gioiTinh, Date ngaySinh, String diaChi, String sdt, String matKhau, CuaHang idCH, ChucVu idCV, NhanVien idGuiBC, int trangThai) {
         this.id = id;
         this.ma = ma;
         this.ten = ten;
@@ -75,11 +76,11 @@ public class NhanVien {
         this.trangThai = trangThai;
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

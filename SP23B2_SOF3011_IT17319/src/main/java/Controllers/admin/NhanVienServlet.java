@@ -1,16 +1,23 @@
 package controllers.admin;
 
+import DomainModel.ChiTietSP;
+import DomainModel.ChucVu;
+import DomainModel.CuaHang;
+import DomainModel.NhanVien;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.commons.beanutils.BeanUtils;
+import repository.ChucVuRepository;
+import repository.CuaHangRepository;
 import repository.NhanVienRepository;
-import View_models.QLNhanVien;
+import view_models.QLNhanVien;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.UUID;
 
 
 @WebServlet({
@@ -23,11 +30,13 @@ import java.lang.reflect.InvocationTargetException;
 })
 public class NhanVienServlet extends HttpServlet {
     private NhanVienRepository nvRepo;
+    private CuaHangRepository chRepo;
+    private ChucVuRepository cvRepo;
 
     public NhanVienServlet() {
         this.nvRepo = new NhanVienRepository();
-        this.nvRepo.insert(new QLNhanVien("NV01", "Nga", "Thị", "Lê", "Nữ", "2003-04-20", "Bắc Từ Liêm", "0335188503", "123", "Cửa hàng 1", "Trưởng phòng", 1));
-        this.nvRepo.insert(new QLNhanVien("NV02", "A", "Văn", "Nguyễn", "Nam","2003-04-20", "Bắc Từ Liêm", "0335188503", "123", "Cửa hàng 2", "Quản lý", 0));
+        this.chRepo = new CuaHangRepository();
+        this.cvRepo = new ChucVuRepository();
     }
 
     @Override
@@ -46,6 +55,48 @@ public class NhanVienServlet extends HttpServlet {
         }
     }
 
+    private void create(HttpServletRequest request,
+                        HttpServletResponse response
+    ) throws ServletException, IOException {
+        request.setAttribute("lstCH", this.chRepo.findAll());
+        request.setAttribute("lstCV", this.cvRepo.findAll());
+        request.setAttribute("view", "/views/NhanVien/create.jsp");
+        request.getRequestDispatcher("/views/layout.jsp")
+                .forward(request, response);
+    }
+    private void edit(HttpServletRequest request,
+                      HttpServletResponse response
+    ) throws ServletException, IOException {
+        UUID id = UUID.fromString(request.getParameter("id"));
+        NhanVien nv = this.nvRepo.findById(id);
+        request.setAttribute("qlnv", nv);
+        request.setAttribute("lstCH", this.chRepo.findAll());
+        request.setAttribute("lstCV", this.cvRepo.findAll());
+        request.setAttribute("view", "/views/NhanVien/edit.jsp");
+        request.getRequestDispatcher("/views/layout.jsp").forward(request, response);
+    }
+
+    private void delete(HttpServletRequest request,
+                        HttpServletResponse response
+    ) throws ServletException, IOException {
+        UUID id = UUID.fromString(request.getParameter("id"));
+        NhanVien nv = this.nvRepo.findById(id);
+        this.nvRepo.delete(nv);
+        response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/nhan-vien/index");
+    }
+
+    private void index(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws ServletException, IOException {
+        request.setAttribute("ds", this.nvRepo.findAll());
+        request.setAttribute("lstCH", this.chRepo.findAll());
+        request.setAttribute("lstCV", this.cvRepo.findAll());
+        request.setAttribute("view", "/views/NhanVien/index.jsp");
+        request.getRequestDispatcher("/views/layout.jsp")
+                .forward(request, response);
+    }
+
     @Override
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response
@@ -60,31 +111,16 @@ public class NhanVienServlet extends HttpServlet {
         }
     }
 
-    private void index(
-            HttpServletRequest request,
-            HttpServletResponse response
-    ) throws ServletException, IOException {
-        request.setAttribute("ds", this.nvRepo.findAll());
-        request.setAttribute("view", "/views/NhanVien/index.jsp");
-        request.getRequestDispatcher("/views/layout.jsp")
-                .forward(request, response);
-    }
-
-    private void create(HttpServletRequest request,
-                        HttpServletResponse response
-    ) throws ServletException, IOException {
-        request.setAttribute("view", "/views/NhanVien/create.jsp");
-        request.getRequestDispatcher("/views/layout.jsp")
-                .forward(request, response);
-    }
-
     private void store(HttpServletRequest request
             , HttpServletResponse response
     ) throws ServletException, IOException {
-        QLNhanVien nv = new QLNhanVien();
+        NhanVien nv = new NhanVien();
+        ChucVu cv = this.cvRepo.findById(UUID.fromString(request.getParameter("id_cv")));
+        CuaHang ch= this.chRepo.findById(UUID.fromString(request.getParameter("id_ch")));
         try {
-
             BeanUtils.populate(nv, request.getParameterMap());
+            nv.setIdCV(cv);
+            nv.setIdCH(ch);
             this.nvRepo.insert(nv);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
@@ -94,37 +130,23 @@ public class NhanVienServlet extends HttpServlet {
         response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/nhan-vien/index");
     }
 
-    private void edit(HttpServletRequest request,
-                      HttpServletResponse response
-    ) throws ServletException, IOException {
-        String ma = request.getParameter("ma");
-        QLNhanVien vm = this.nvRepo.findByMa(ma);
-        request.setAttribute("qlnv", vm);
-        request.setAttribute("view", "/views/NhanVien/edit.jsp");
-        request.getRequestDispatcher("/views/layout.jsp").forward(request, response);
-    }
-
     private void update(HttpServletRequest request,
                         HttpServletResponse response
     ) throws ServletException, IOException {
-        QLNhanVien nv = new QLNhanVien();
+        UUID id = UUID.fromString(request.getParameter("id_nv"));
+        NhanVien nv = this.nvRepo.findById(id);
+        ChucVu cv = this.cvRepo.findById(UUID.fromString(request.getParameter("id_cv")));
+        CuaHang ch= this.chRepo.findById(UUID.fromString(request.getParameter("id_ch")));
         try {
             BeanUtils.populate(nv, request.getParameterMap());
+            nv.setIdCV(cv);
+            nv.setIdCH(ch);
             this.nvRepo.update(nv);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
-        response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/nhan-vien/index");
-    }
-
-    private void delete(HttpServletRequest request,
-                        HttpServletResponse response
-    ) throws ServletException, IOException {
-        String ma = request.getParameter("ma");
-        QLNhanVien vm = nvRepo.findByMa(ma);
-        this.nvRepo.delete(vm);
         response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/nhan-vien/index");
     }
 }

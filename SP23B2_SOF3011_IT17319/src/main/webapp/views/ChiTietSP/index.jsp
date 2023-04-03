@@ -48,22 +48,22 @@
         <c:if test="${f:length(ds) != 0}">
             <c:forEach items="${ ds }" var="ctsp">
                 <tr>
-                    <td>${ ctsp.san_pham }</td>
-                    <td>${ ctsp.nsx }</td>
-                    <td>${ ctsp.mau_sac }</td>
-                    <td>${ ctsp.dong_sp }</td>
-                    <td>${ ctsp.nam_bh }</td>
-                    <td>${ ctsp.mo_ta }</td>
-                    <td>${ ctsp.sl_ton }</td>
-                    <td>${ ctsp.gia_nhap }</td>
-                    <td>${ ctsp.gia_ban }</td>
+                    <td>${ ctsp.idSP.ten }</td>
+                    <td>${ ctsp.idNsx.ten }</td>
+                    <td>${ ctsp.idMauSac.ten }</td>
+                    <td>${ ctsp.idDongSP.ten }</td>
+                    <td>${ ctsp.namBH }</td>
+                    <td>${ ctsp.mota }</td>
+                    <td>${ ctsp.soLuongTon }</td>
+                    <td>${ ctsp.giaNhap }</td>
+                    <td>${ ctsp.giaBan }</td>
 
                     <td>
-                        <a href="/SP23B2_SOF3011_IT17319_war_exploded/chitiet-sp/delete?idsp=${ctsp.idsp}"
+                        <a href="/SP23B2_SOF3011_IT17319_war_exploded/chitiet-sp/delete?id=${ctsp.id}"
                            class="btn btn-danger">Delete</a>
                     </td>
                     <td>
-                        <a href="/SP23B2_SOF3011_IT17319_war_exploded/chitiet-sp/edit?idsp=${ctsp.idsp}"
+                        <a href="/SP23B2_SOF3011_IT17319_war_exploded/chitiet-sp/edit?id=${ctsp.id}"
                            class="btn btn-primary">Update</a>
                     </td>
                 </tr>

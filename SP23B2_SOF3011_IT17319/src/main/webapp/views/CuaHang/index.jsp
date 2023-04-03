@@ -45,14 +45,14 @@
             <tr>
                 <td>${ch.ma}</td>
                 <td>${ch.ten}</td>
-                <td>${ch.dia_chi}</td>
-                <td>${ch.thanh_pho}</td>
-                <td>${ch.quoc_gia}</td>
+                <td>${ch.diaChi}</td>
+                <td>${ch.thanhPho}</td>
+                <td>${ch.quocGia}</td>
                 <td>
-                    <a href="/SP23B2_SOF3011_IT17319_war_exploded/cua-hang/delete?ma=${ch.ma}" class="btn btn-danger">Delete</a>
+                    <a href="/SP23B2_SOF3011_IT17319_war_exploded/cua-hang/delete?id=${ch.id}" class="btn btn-danger">Delete</a>
                 </td>
                 <td>
-                    <a href="/SP23B2_SOF3011_IT17319_war_exploded/cua-hang/edit?ma=${ch.ma}" class="btn btn-primary">Update</a>
+                    <a href="/SP23B2_SOF3011_IT17319_war_exploded/cua-hang/edit?id=${ch.id}" class="btn btn-primary">Update</a>
                 </td>
             </tr>
         </c:forEach>

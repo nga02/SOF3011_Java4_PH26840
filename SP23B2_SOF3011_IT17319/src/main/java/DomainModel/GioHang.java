@@ -3,14 +3,15 @@ package DomainModel;
 import jakarta.persistence.*;
 
 import java.sql.Date;
+import java.util.UUID;
 
 @Entity
 @Table(name = "GioHang")
 public class GioHang {
     @Id
     @Column(name = "Id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "IdKH")
@@ -45,7 +46,7 @@ public class GioHang {
     public GioHang() {
     }
 
-    public GioHang(String id, KhachHang idKH, NhanVien idNV, String ma, Date ngayTao, Date ngayThanhToan, String tenNguoiNhan, String diaChi, String sdt, int tinhTrang) {
+    public GioHang(UUID id, KhachHang idKH, NhanVien idNV, String ma, Date ngayTao, Date ngayThanhToan, String tenNguoiNhan, String diaChi, String sdt, int tinhTrang) {
         this.id = id;
         this.idKH = idKH;
         this.idNV = idNV;
@@ -58,11 +59,11 @@ public class GioHang {
         this.tinhTrang = tinhTrang;
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

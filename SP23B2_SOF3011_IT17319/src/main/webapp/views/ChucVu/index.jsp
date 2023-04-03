@@ -45,11 +45,11 @@
                     <td>${cv.ma}</td>
                     <td>${cv.ten}</td>
                     <td>
-                        <a href="/SP23B2_SOF3011_IT17319_war_exploded/chuc-vu/delete?ma=${cv.ma}"
+                        <a href="/SP23B2_SOF3011_IT17319_war_exploded/chuc-vu/delete?id=${cv.id}"
                            class="btn btn-danger">Delete</a>
                     </td>
                     <td>
-                        <a href="/SP23B2_SOF3011_IT17319_war_exploded/chuc-vu/edit?ma=${cv.ma}"
+                        <a href="/SP23B2_SOF3011_IT17319_war_exploded/chuc-vu/edit?id=${cv.id}"
                            class="btn btn-primary">Update</a>
                     </td>
                 </tr>

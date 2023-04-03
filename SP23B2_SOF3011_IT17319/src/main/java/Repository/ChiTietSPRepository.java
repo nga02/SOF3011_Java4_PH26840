@@ -1,48 +1,67 @@
 package repository;
 
-import View_models.QLCTSP;
+import DomainModel.ChiTietSP;
+import DomainModel.KhachHang;
+import Utils.HibernateUtil;
+import jakarta.persistence.TypedQuery;
+import org.hibernate.Session;
+import view_models.QLCTSP;
 
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 public class ChiTietSPRepository {
-    private ArrayList<QLCTSP> ds;
+    private Session hSession;
 
     public ChiTietSPRepository(){
-        this.ds = new ArrayList<>();
+        this.hSession = HibernateUtil.getFACTORY().openSession();
     }
-    public void insert(QLCTSP ctsp) {
-        this.ds.add(ctsp);
+    public void insert(ChiTietSP ctsp) {
+        try{
+            this.hSession.getTransaction().begin();
+            this.hSession.persist(ctsp);
+            this.hSession.getTransaction().commit();
+        }catch(Exception e){
+            e.printStackTrace();
+            this.hSession.getTransaction().rollback();
+        }
+
     }
 
-    public void update(QLCTSP ctsp) {
-        for (int i = 0; i < this.ds.size(); i++) {
-            QLCTSP vm = this.ds.get(i);
-            if (vm.getIdsp().equals(ctsp.getIdsp())) {
-                this.ds.set(i, ctsp);
-            }
+    public void update(ChiTietSP ctsp) {
+        try{
+            this.hSession.getTransaction().begin();
+            this.hSession.update(ctsp);
+            this.hSession.getTransaction().commit();
+        }catch(Exception e){
+            e.printStackTrace();
+            this.hSession.getTransaction().rollback();
         }
     }
 
-    public void delete(QLCTSP ctsp) {
-        for (int i = 0; i < this.ds.size(); i++) {
-            QLCTSP vm = this.ds.get(i);
-            if (vm.getIdsp().equals(ctsp.getIdsp())) {
-                this.ds.remove(i);
-            }
+    public void delete(ChiTietSP ctsp) {
+        try{
+            this.hSession.getTransaction().begin();
+            this.hSession.delete(ctsp);
+            this.hSession.getTransaction().commit();
+        }catch(Exception e){
+            e.printStackTrace();
+            this.hSession.getTransaction().rollback();
         }
     }
 
-    public ArrayList<QLCTSP> findAll() {
-        return this.ds;
+    public List<ChiTietSP> findAll() {
+        String hql = "SELECT c FROM ChiTietSP c";
+        TypedQuery<ChiTietSP> q = this.hSession.createQuery(hql,ChiTietSP.class);
+        return q.getResultList();
     }
 
-    public QLCTSP findById(String id) {
-        for (QLCTSP vm : this.ds) {
-            if (vm.getIdsp().equals(id)) {
-                return vm;
-            }
-        }
-        return null;
+    public ChiTietSP findById(UUID id) {
+        String hql = "SELECT c FROM ChiTietSP c WHERE  c.id = :Id";
+        TypedQuery<ChiTietSP> q = this.hSession.createQuery(hql, ChiTietSP.class);
+        q.setParameter("Id", id);
+        return q.getSingleResult();
     }
 }

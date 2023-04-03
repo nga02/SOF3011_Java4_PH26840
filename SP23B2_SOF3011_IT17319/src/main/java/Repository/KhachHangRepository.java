@@ -5,8 +5,8 @@ import Utils.HibernateUtil;
 import jakarta.persistence.TypedQuery;
 import org.hibernate.Session;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class KhachHangRepository {
     private Session hSession;
@@ -62,10 +62,17 @@ public class KhachHangRepository {
         return q.getSingleResult();
     }
 
-    public static void main(String[] args) {
-        List<KhachHang> lst = new KhachHangRepository().findAll();
-        for (int i = 0; i < lst.size(); i++) {
-            System.out.println(lst.get(i));
-        }
+    public KhachHang findById(UUID id) {
+        String hql = "SELECT khObj FROM KhachHang khObj WHERE khObj.id = ?1";
+        TypedQuery<KhachHang> q = this.hSession.createQuery(hql, KhachHang.class);
+        q.setParameter(1, id);
+        return q.getSingleResult();
     }
+
+//    public static void main(String[] args) {
+//        List<KhachHang> lst = new KhachHangRepository().findAll();
+//        for (int i = 0; i < lst.size(); i++) {
+//            System.out.println(lst.get(i));
+//        }
+//    }
 }

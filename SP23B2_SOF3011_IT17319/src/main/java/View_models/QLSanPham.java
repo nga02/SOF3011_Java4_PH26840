@@ -1,4 +1,4 @@
-package View_models;
+package view_models;
 
 public class QLSanPham {
     private String ma;

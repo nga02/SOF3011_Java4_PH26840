@@ -5,8 +5,8 @@ import Utils.HibernateUtil;
 import jakarta.persistence.TypedQuery;
 import org.hibernate.Session;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class ChucVuRepository {
     private Session hSession;
@@ -58,6 +58,13 @@ public class ChucVuRepository {
         String hql = "SELECT c FROM ChucVu c  WHERE c.ma = ?1";
         TypedQuery<ChucVu> q = this.hSession.createQuery(hql, ChucVu.class);
         q.setParameter(1, ma);
+        return q.getSingleResult();
+    }
+
+    public ChucVu findById(UUID id) {
+        String hql = "SELECT c FROM ChucVu c  WHERE c.id = ?1";
+        TypedQuery<ChucVu> q = this.hSession.createQuery(hql, ChucVu.class);
+        q.setParameter(1, id);
         return q.getSingleResult();
     }
 }

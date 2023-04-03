@@ -1,14 +1,12 @@
 package repository;
 
-import DomainModel.ChucVu;
 import DomainModel.MauSac;
 import Utils.HibernateUtil;
-import View_models.QLMauSac;
 import jakarta.persistence.TypedQuery;
 import org.hibernate.Session;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class MauSacRepository {
     private Session hSession;
@@ -60,6 +58,13 @@ public class MauSacRepository {
         String hql = "SELECT c FROM MauSac c  WHERE c.ma = ?1";
         TypedQuery<MauSac> q = this.hSession.createQuery(hql, MauSac.class);
         q.setParameter(1, ma);
+        return q.getSingleResult();
+    }
+
+    public MauSac findById(UUID id) {
+        String hql = "SELECT c FROM MauSac c  WHERE c.id = ?1";
+        TypedQuery<MauSac> q = this.hSession.createQuery(hql, MauSac.class);
+        q.setParameter(1, id);
         return q.getSingleResult();
     }
 }

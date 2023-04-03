@@ -41,16 +41,15 @@
         <span>Không có dữ liệu</span>
     </c:if>
     <c:if test="${f:length(ds) != 0}">
-        <c:forEach items="${ ds }" var="sp">
+        <c:forEach items="${ ds }" var="dsp">
             <tr>
-
-                <td>${sp.ma}</td>
-                <td>${sp.ten}</td>
+                <td>${dsp.ma}</td>
+                <td>${dsp.ten}</td>
                 <td>
-                    <a href="/SP23B2_SOF3011_IT17319_war_exploded/dong-sp/delete?ma=${sp.ma}" class="btn btn-danger">Delete</a>
+                    <a href="/SP23B2_SOF3011_IT17319_war_exploded/dong-sp/delete?id=${dsp.id}" class="btn btn-danger">Delete</a>
                 </td>
                 <td>
-                    <a href="/SP23B2_SOF3011_IT17319_war_exploded/dong-sp/edit?ma=${sp.ma}" class="btn btn-primary">Update</a>
+                    <a href="/SP23B2_SOF3011_IT17319_war_exploded/dong-sp/edit?id=${dsp.id}" class="btn btn-primary">Update</a>
                 </td>
             </tr>
         </c:forEach>

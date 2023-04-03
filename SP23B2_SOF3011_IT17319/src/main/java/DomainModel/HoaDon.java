@@ -3,21 +3,22 @@ package DomainModel;
 import jakarta.persistence.*;
 
 import java.sql.Date;
+import java.util.UUID;
 
 @Entity
 @Table(name = "HoaDon")
 public class HoaDon {
     @Id
     @Column(name = "Id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    @GeneratedValue
+    private UUID id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "IdKH")
+    @ManyToOne
+    @JoinColumn(name = "IdKH",referencedColumnName = "Id")
     private KhachHang idKH;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "IdNV")
+    @ManyToOne
+    @JoinColumn(name = "IdNV",referencedColumnName = "Id")
     private NhanVien idNhanVien;
 
     @Column(name = "Ma")
@@ -50,7 +51,7 @@ public class HoaDon {
     public HoaDon() {
     }
 
-    public HoaDon(String id, KhachHang idKH, NhanVien idNhanVien, String ma, Date ngayTao, Date ngayThanhToan, Date ngayShip, Date ngayNhan, int tinhTrang, String tenNguoiNhan, String diaChhi, String sdt) {
+    public HoaDon(UUID id, KhachHang idKH, NhanVien idNhanVien, String ma, Date ngayTao, Date ngayThanhToan, Date ngayShip, Date ngayNhan, int tinhTrang, String tenNguoiNhan, String diaChhi, String sdt) {
         this.id = id;
         this.idKH = idKH;
         this.idNhanVien = idNhanVien;
@@ -65,11 +66,11 @@ public class HoaDon {
         this.sdt = sdt;
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

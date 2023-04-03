@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="f" uri="jakarta.tags.functions" %>
 <html>
 <head>
     <link
@@ -14,33 +16,7 @@
             integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
             crossorigin="anonymous"
     />
-    <script>
-        function Validate(){
-            var ma = document.myForm.idsp.value;
-            var namBH = document.myForm.nam_bh.value;
-            var moTa = document.myForm.mo_ta.value;
-            var sl_ton = document.myForm.sl_ton.value;
-            var gia_nhap = document.myForm.gia_nhap.value;
-            var gia_ban = document.myForm.gia_ban.value;
 
-            if(ma==""){
-                document.getElementById("error_id").innerHTML="Không để trống trường mã";
-            }
-            if(namBH==""){
-                document.getElementById("error_namBH").innerHTML="Không để trống trường năm bảo hành";
-            }
-            if(moTa==""){
-                document.getElementById("error_mota").innerHTML="Không để trống trường mô tả";
-            } if(sl_ton==""){
-                document.getElementById("error_slTon").innerHTML="Không để trống trường số lượng tồn";
-            } if(gia_nhap==""){
-                document.getElementById("error_giaNhap").innerHTML="Không để trống trường giá nhập";
-            } if(gia_ban==""){
-                document.getElementById("error_giaBan").innerHTML="Không để trống trường giá bán";
-            }
-
-        }
-    </script>
     <style>
         .form-group p{
             color: red;
@@ -50,79 +26,79 @@
 <body>
 <h1 class="text-center">QUẢN LÝ CHI TIẾT SẢN PHẨM</h1>
 <div class="col-8 offset-1 mt-3">
-    <form name="myForm" method="POST"
-          action="/SP23B2_SOF3011_IT17319_war_exploded//chitiet-sp/update?idsp=${ ctsp.idsp }">
+    <form method="POST"
+          action="/SP23B2_SOF3011_IT17319_war_exploded//chitiet-sp/update?id_ctsp=${ctsp.id}">
 
         <div class="form-group">
             <label>Id</label>
-            <input type="text" name="idsp" class="form-control" value="${ctsp.idsp}" disabled/>
+            <input type="text" name="id" class="form-control" value="${ctsp.id}" disabled/>
             <p id="error_id"></p>
         </div>
         <div class="form-group">
             <label>Sản phẩm</label>
-            <select name="san_pham" class="form-select">
-                <option value="Sữa rửa mặt" ${ctsp.san_pham=="Sữa rửa mặt"?"selected":""}>Sữa rửa mặt</option>
-                <option value="Kem chống nắng" ${ctsp.san_pham=="Kem chống nắng"?"selected":""}>Kem chống nắng</option>
-                <option value="Nước tẩy trang" ${ctsp.san_pham=="Nước tẩy trang"?"selected":""}>Nước tẩy trang</option>
-            </select>
+
+                <select name="id_SP" class="form-select">
+                    <c:forEach items="${ lstSP }" var="sp">
+                        <option value="${sp.id} ${ctsp.idSP.id == sp.id?"selected":""}">${sp.ten}</option>
+                    </c:forEach>
+                </select>
+
         </div>
         <div class="form-group">
             <label>NSX</label>
-            <select name="nsx" class="form-select">
-                <option value="Maybelline" ${ctsp.nsx=="Maybelline"?"selected":""}>Maybelline</option>
-                <option value="Shu Uemura" ${ctsp.nsx=="Shu Uemura"?"selected":""}>Shu Uemura</option>
-                <option value="Estee Lauder" ${ctsp.nsx=="Estee Lauder"?"selected":""}>Estee Lauder</option>
+            <select name="id_Nsx" class="form-select">
+                <c:forEach items="${ lstNSX }" var="nsx">
+                    <option value="${nsx.id} ${ctsp.idNsx.id==nsx.id?"selected":""}">${nsx.ten}</option>
+                </c:forEach>
             </select>
         </div>
         <div class="form-group">
             <label>Màu sắc</label>
-            <select name="mau_sac" class="form-select">
-                <option value="Orange" ${ctsp.san_pham=="Orange"?"selected":""}>Orange</option>
-                <option value="Blue" ${ctsp.san_pham=="Blue"?"selected":""}>Blue</option>
-                <option value="White" ${ctsp.san_pham=="White"?"selected":""}>White</option>
-
+            <select name="id_MauSac" class="form-select">
+                <c:forEach items="${ lstMauSac }" var="ms">
+                    <option value="${ms.id} ${ctsp.idMauSac.id==ms.id? "selected":""}">${ms.ten}</option>
+                </c:forEach>
             </select>
         </div>
         <div class="form-group">
             <label>Dòng sản phẩm</label>
-            <select name="dong_sp" class="form-select">
-                <option value="Biore" ${ctsp.dong_sp=="Biore"?"selected":""}>Biore</option>
-                <option value="Bobbi Brown" ${ctsp.dong_sp=="Bobbi Brown"?"selected":""}>Bobbi Brown</option>
-                <option value="Obagi Medical" ${ctsp.dong_sp=="Obagi Medical"?"selected":""}>Obagi Medical</option>
-
+            <select name="id_DongSP" class="form-select">
+                <c:forEach items="${ lstDongSP }" var="dsp">
+                    <option value="${dsp.id} ${ctsp.idDongSP.id==dsp.id?"selected":""}">${dsp.ten}</option>
+                </c:forEach>
             </select>
         </div>
 
         <div class="form-group">
             <label>Năm bảo hành</label>
-            <input type="number" name="nam_bh" class="form-control" value="${ctsp.nam_bh}" onkeyup="Validate()" required/>
+            <input type="number" name="namBH" class="form-control" value="${ctsp.namBH}" required/>
             <p id="error_namBH"></p>
         </div>
 
         <div class="form-group">
             <label>Mô tả</label>
-            <input type="text" name="mo_ta" class="form-control" value="${ctsp.mo_ta}" onkeyup="Validate()" required/>
+            <input type="text" name="mota" class="form-control" value="${ctsp.mota}" required/>
             <p id="error_mota"></p>
         </div>
         <div class="form-group">
             <label>Số lượng tồn</label>
-            <input type="number" name="sl_ton" class="form-control" value="${ctsp.sl_ton}" onkeyup="Validate()" required/>
+            <input type="number" name="soLuongTon" class="form-control" value="${ctsp.soLuongTon}" required/>
             <p id="error_slTon"></p>
         </div>
 
         <div class="form-group">
             <label>Giá nhập</label>
-            <input type="text" name="gia_nhap" class="form-control" value="${ctsp.gia_nhap}" onkeyup="Validate()" required/>
+            <input type="text" name="giaNhap" class="form-control" value="${ctsp.giaNhap}" required/>
             <p id="error_giaNhap"></p>
         </div>
         <div class="form-group">
             <label>Giá bán</label>
-            <input type="text" name="gia_ban" class="form-control" value="${ctsp.gia_ban}"  onkeyup="Validate()" required/>
+            <input type="text" name="giaBan" class="form-control" value="${ctsp.giaBan}"  required/>
             <p id="error_giaBan"></p>
         </div>
         <div class="row">
             <div class="col-6 text-center">
-                <button class="btn btn-primary" onclick="Validate()">Update</button>
+                <button class="btn btn-primary">Update</button>
 
             </div>
         </div>

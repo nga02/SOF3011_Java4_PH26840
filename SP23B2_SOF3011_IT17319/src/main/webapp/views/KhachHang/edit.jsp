@@ -63,7 +63,7 @@
 <body>
 <div class="col-8 offset-2 mt-3">
     <form name="myForm" method="POST"
-          action="/SP23B2_SOF3011_IT17319_war_exploded/khach-hang/update?ma=${ qlkh.ma }">
+          action="/SP23B2_SOF3011_IT17319_war_exploded/khach-hang/update?id_kh=${ qlkh.id }">
         <div class="row">
             <div class="col-6">
                 <label>Mã</label>

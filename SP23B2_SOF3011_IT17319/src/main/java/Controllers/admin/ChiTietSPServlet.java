@@ -1,14 +1,17 @@
 package controllers.admin;
 
+import DomainModel.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import org.apache.commons.beanutils.BeanUtils;
-import repository.ChiTietSPRepository;
-import View_models.QLCTSP;
+import repository.*;
+import view_models.QLCTSP;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.math.BigDecimal;
+import java.util.UUID;
 
 @WebServlet({
         "/chitiet-sp/index",
@@ -20,11 +23,17 @@ import java.lang.reflect.InvocationTargetException;
 })
 public class ChiTietSPServlet extends HttpServlet {
     private ChiTietSPRepository ctspRepo;
+    private SanPhamRepository spRepo;
+    private NSXRepository nsxRepo;
+    private MauSacRepository msRepo;
+    private DongSPRepository dongspRepo;
 
     public ChiTietSPServlet() {
         this.ctspRepo = new ChiTietSPRepository();
-        this.ctspRepo.insert(new QLCTSP("bfuyrgf8yrgt8","Sữa rửa mặt","Maybelline","Orange","Biore",2022,"Nhập khẩu từ Pháp",10,500,550));
-        this.ctspRepo.insert(new QLCTSP("jjhjhjjt43c","Nước tẩy trang","Shu Uemura","Blue","Obagi Medical",2023,"Nhập khẩu từ Nhật",25,600,650));
+        this.spRepo = new SanPhamRepository();
+        this.nsxRepo = new NSXRepository();
+        this.msRepo = new MauSacRepository();
+        this.dongspRepo = new DongSPRepository();
     }
 
     @Override
@@ -43,6 +52,55 @@ public class ChiTietSPServlet extends HttpServlet {
         }
     }
 
+    private void create(HttpServletRequest request,
+                        HttpServletResponse response
+    ) throws ServletException, IOException {
+        request.setAttribute("lstSP", this.spRepo.findAll());
+        request.setAttribute("lstNSX", this.nsxRepo.findAll());
+        request.setAttribute("lstMauSac", this.msRepo.findAll());
+        request.setAttribute("lstDongSP", this.dongspRepo.findAll());
+        request.setAttribute("view", "/views/ChiTietSP/create.jsp");
+        request.getRequestDispatcher("/views/layout.jsp")
+                .forward(request, response);
+    }
+
+    private void edit(HttpServletRequest request,
+                      HttpServletResponse response
+    ) throws ServletException, IOException {
+        UUID id = UUID.fromString(request.getParameter("id"));
+        ChiTietSP ct = this.ctspRepo.findById(id);
+        request.setAttribute("ctsp", ct);
+        request.setAttribute("lstSP", this.spRepo.findAll());
+        request.setAttribute("lstNSX", this.nsxRepo.findAll());
+        request.setAttribute("lstMauSac", this.msRepo.findAll());
+        request.setAttribute("lstDongSP", this.dongspRepo.findAll());
+        request.setAttribute("view", "/views/ChiTietSP/edit.jsp");
+        request.getRequestDispatcher("/views/layout.jsp").forward(request, response);
+    }
+
+    private void delete(HttpServletRequest request,
+                        HttpServletResponse response
+    ) throws ServletException, IOException {
+        UUID id = UUID.fromString(request.getParameter("id"));
+        ChiTietSP ct = this.ctspRepo.findById(id);
+        this.ctspRepo.delete(ct);
+        response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/chitiet-sp/index");
+    }
+
+    private void index(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws ServletException, IOException {
+        request.setAttribute("ds", this.ctspRepo.findAll());
+        request.setAttribute("lstSP", this.spRepo.findAll());
+        request.setAttribute("lstNSX", this.nsxRepo.findAll());
+        request.setAttribute("lstMS", this.msRepo.findAll());
+        request.setAttribute("lstDongSP", this.dongspRepo.findAll());
+        request.setAttribute("view", "/views/ChiTietSP/index.jsp");
+        request.getRequestDispatcher("/views/layout.jsp")
+                .forward(request, response);
+    }
+
     @Override
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response
@@ -57,58 +115,77 @@ public class ChiTietSPServlet extends HttpServlet {
         }
     }
 
-    private void index(
-            HttpServletRequest request,
-            HttpServletResponse response
-    ) throws ServletException, IOException {
-        request.setAttribute("ds", this.ctspRepo.findAll());
-        request.setAttribute("view", "/views/ChiTietSP/index.jsp");
-        request.getRequestDispatcher("/views/layout.jsp")
-                .forward(request, response);
-    }
-
-    private void create(HttpServletRequest request,
-                        HttpServletResponse response
-    ) throws ServletException, IOException {
-        request.setAttribute("view", "/views/ChiTietSP/create.jsp");
-        request.getRequestDispatcher("/views/layout.jsp")
-                .forward(request, response);
-    }
-
     private void store(
             HttpServletRequest request,
             HttpServletResponse response
     ) throws ServletException, IOException {
-        QLCTSP spct = new QLCTSP();
-        try {
-            BeanUtils.populate(spct, request.getParameterMap());
-            this.ctspRepo.insert(spct);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        }
-        response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/chitiet-sp/index");
-    }
+        ChiTietSP ctsp = new ChiTietSP();
 
-    private void edit(HttpServletRequest request,
-                      HttpServletResponse response
-    ) throws ServletException, IOException {
-        String ma = request.getParameter("idsp");
-        QLCTSP vm = this.ctspRepo.findById(ma);
-        request.setAttribute("ctsp", vm);
-        request.setAttribute("view", "/views/ChiTietSP/edit.jsp");
-        request.getRequestDispatcher("/views/layout.jsp").forward(request, response);
+        ctsp.setIdSP(spRepo.findById(UUID.fromString(request.getParameter("idSP"))));
+        ctsp.setIdDongSP(dongspRepo.findById(UUID.fromString(request.getParameter("idDongSP"))));
+        ctsp.setIdMauSac(msRepo.findById(UUID.fromString(request.getParameter("idMauSac"))));
+        ctsp.setIdNsx(nsxRepo.findById(UUID.fromString(request.getParameter("idNsx"))));
+        ctsp.setNamBH(Integer.parseInt(request.getParameter("namBH")));
+        ctsp.setMota(request.getParameter("mota"));
+        ctsp.setSoLuongTon(Integer.parseInt(request.getParameter("soLuongTon")));
+
+        double giaNhapStr = Double.parseDouble(request.getParameter("giaNhap"));
+        BigDecimal giaNhap = BigDecimal.valueOf(giaNhapStr);
+        ctsp.setGiaNhap(giaNhap);
+
+        double giaBanStr = Double.parseDouble(request.getParameter("giaBan"));
+        BigDecimal giaBan = BigDecimal.valueOf(giaBanStr);
+        ctsp.setGiaBan(giaBan);
+
+        this.ctspRepo.insert(ctsp);
+
+
+//        try {
+//            BeanUtils.populate(ctsp, request.getParameterMap());
+//            this.ctspRepo.insert(ctsp);
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        } catch (InvocationTargetException e) {
+//            e.printStackTrace();
+//        }
+        response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/chitiet-sp/index");
     }
 
     private void update(
             HttpServletRequest request,
             HttpServletResponse response
     ) throws ServletException, IOException {
-        QLCTSP vm = new QLCTSP();
+        UUID id = UUID.fromString(request.getParameter("id"));
+        ChiTietSP ctsp = this.ctspRepo.findById(id);
+//        ChiTietSP ctsp = new ChiTietSP();
+//
+
+        MauSac ms = this.msRepo.findById(UUID.fromString(request.getParameter("id_MauSac")));
+        NhaSX nsx = this.nsxRepo.findById(UUID.fromString(request.getParameter("id_Nsx")));
+        DongSP dsp = this.dongspRepo.findById(UUID.fromString(request.getParameter("id_DongSP")));
+        SanPham sp = this.spRepo.findById(UUID.fromString(request.getParameter("id_SP")));
+
+//        ctsp.setNamBH(Integer.parseInt(request.getParameter("namBH")));
+//        ctsp.setMota(request.getParameter("mota"));
+//        ctsp.setSoLuongTon(Integer.parseInt(request.getParameter("soLuongTon")));
+//
+//        double giaNhapStr = Double.parseDouble(request.getParameter("giaNhap"));
+//        BigDecimal giaNhap = BigDecimal.valueOf(giaNhapStr);
+//        ctsp.setGiaNhap(giaNhap);
+//
+//        double giaBanStr = Double.parseDouble(request.getParameter("giaBan"));
+//        BigDecimal giaBan = BigDecimal.valueOf(giaBanStr);
+//        ctsp.setGiaBan(giaBan);
+//
+//        this.ctspRepo.update(ctsp);
+
         try {
-            BeanUtils.populate(vm, request.getParameterMap());
-            this.ctspRepo.update(vm);
+            BeanUtils.populate(ctsp, request.getParameterMap());
+            ctsp.setIdDongSP(dsp);
+            ctsp.setIdMauSac(ms);
+            ctsp.setIdNsx(nsx);
+            ctsp.setIdSP(sp);
+            this.ctspRepo.update(ctsp);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
@@ -116,14 +193,4 @@ public class ChiTietSPServlet extends HttpServlet {
         }
         response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/chitiet-sp/index");
     }
-
-    private void delete(HttpServletRequest request,
-                        HttpServletResponse response
-    ) throws ServletException, IOException {
-        String ma = request.getParameter("idsp");
-        QLCTSP vm = ctspRepo.findById(ma);
-        this.ctspRepo.delete(vm);
-        response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/chitiet-sp/index");
-    }
-
 }

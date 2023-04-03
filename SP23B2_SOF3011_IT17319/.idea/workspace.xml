@@ -42,6 +42,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="sqlserver" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -183,8 +184,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.KhachHangRepository" />
         <item itemvalue="Application.HibernateUtil" />
+        <item itemvalue="Application.KhachHangRepository" />
       </list>
     </recent_temporary>
   </component>
@@ -229,14 +230,45 @@
       <workItem from="1679848525559" duration="5014000" />
       <workItem from="1679884111495" duration="5143000" />
       <workItem from="1679935494674" duration="596000" />
-      <workItem from="1680015451208" duration="6904000" />
+      <workItem from="1680015451208" duration="8433000" />
+      <workItem from="1680057143419" duration="6343000" />
+      <workItem from="1680164761300" duration="2477000" />
+      <workItem from="1680187451946" duration="24000" />
+      <workItem from="1680188004468" duration="5761000" />
+      <workItem from="1680229930114" duration="5298000" />
+      <workItem from="1680273748907" duration="660000" />
+      <workItem from="1680444688986" duration="14282000" />
+      <workItem from="1680503644840" duration="11437000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/controllers/admin/ChucVuServlet.java</url>
+          <line>70</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/SP23B2_SOF3011_IT17319$Tomcat_10_1_7.ic" NAME="Tomcat 10.1.7 Coverage Results" MODIFIED="1680022965832" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/SP23B2_SOF3011_IT17319$Tomcat_10_1_7.ic" NAME="Tomcat 10.1.7 Coverage Results" MODIFIED="1680509072834" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

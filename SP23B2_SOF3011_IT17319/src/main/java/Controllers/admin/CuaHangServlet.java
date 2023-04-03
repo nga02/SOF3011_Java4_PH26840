@@ -1,5 +1,7 @@
 package controllers.admin;
 
+import DomainModel.ChucVu;
+import DomainModel.CuaHang;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -8,9 +10,10 @@ import java.io.IOException;
 
 import org.apache.commons.beanutils.BeanUtils;
 import repository.CuaHangRepository;
-import View_models.QLCuaHang;
+import view_models.QLCuaHang;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.UUID;
 
 @WebServlet({
         "/cua-hang/index", // GET
@@ -25,9 +28,6 @@ public class CuaHangServlet extends HttpServlet {
 
     public CuaHangServlet() {
         this.chRepo = new CuaHangRepository();
-        chRepo.insert(new QLCuaHang("CH01", "Cửa hàng 1", "Cầu Diễn", "Hà Nội", "Việt Nam"));
-        chRepo.insert(new QLCuaHang("CH02", "Cửa hàng 2", "Cầu Diễn", "Đà Nẵng", "Thái Lan"));
-
     }
 
     @Override
@@ -49,6 +49,46 @@ public class CuaHangServlet extends HttpServlet {
         }
     }
 
+    private void create(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws ServletException, IOException {
+        request.setAttribute("view","/views/CuaHang/create.jsp");
+        request.getRequestDispatcher("/views/layout.jsp")
+                .forward(request, response);
+    }
+
+    private void edit(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws ServletException, IOException {
+        UUID id_CH = UUID.fromString(request.getParameter("id"));
+        CuaHang ch = this.chRepo.findById(id_CH);
+        request.setAttribute("qlch", ch);
+        request.setAttribute("view","/views/CuaHang/edit.jsp");
+        request.getRequestDispatcher("/views/layout.jsp").forward(request, response);
+    }
+
+    private void delete(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws ServletException, IOException {
+        UUID id_CH = UUID.fromString(request.getParameter("id"));
+        CuaHang ch = this.chRepo.findById(id_CH);
+        this.chRepo.delete(ch);
+        response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/cua-hang/index");
+    }
+
+    private void index(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws ServletException, IOException {
+        request.setAttribute("ds", chRepo.findAll());
+        request.setAttribute("view", "/views/CuaHang/index.jsp");
+        request.getRequestDispatcher("/views/layout.jsp")
+                .forward(request, response);
+    }
+
     @Override
     protected void doPost(
             HttpServletRequest request,
@@ -62,32 +102,13 @@ public class CuaHangServlet extends HttpServlet {
         }else{
             response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/cua-hang/index");
         }
-
     }
 
-    private void index(
-            HttpServletRequest request,
-            HttpServletResponse response
-    ) throws ServletException, IOException {
-        request.setAttribute("ds", chRepo.findAll());
-        request.setAttribute("view", "/views/CuaHang/index.jsp");
-        request.getRequestDispatcher("/views/layout.jsp")
-                .forward(request, response);
-    }
-
-    private void create(
-            HttpServletRequest request,
-            HttpServletResponse response
-    ) throws ServletException, IOException {
-        request.setAttribute("view","/views/CuaHang/create.jsp");
-        request.getRequestDispatcher("/views/layout.jsp")
-                .forward(request, response);
-    }
     private void store(
             HttpServletRequest request,
             HttpServletResponse response
     ) throws ServletException, IOException {
-        QLCuaHang ch = new QLCuaHang();
+        CuaHang ch = new CuaHang();
         try {
 
             BeanUtils.populate(ch,request.getParameterMap());
@@ -100,21 +121,13 @@ public class CuaHangServlet extends HttpServlet {
         response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/cua-hang/index");
     }
 
-    private void edit(
-            HttpServletRequest request,
-            HttpServletResponse response
-    ) throws ServletException, IOException {
-        String ma = request.getParameter("ma");
-        QLCuaHang vm = chRepo.findByMa(ma);
-        request.setAttribute("qlch", vm);
-        request.setAttribute("view","/views/CuaHang/edit.jsp");
-        request.getRequestDispatcher("/views/layout.jsp").forward(request, response);
-    }
+
 
     private void update(HttpServletRequest request,
                         HttpServletResponse response
     ) throws ServletException, IOException{
-        QLCuaHang ch = new QLCuaHang();
+        UUID id_CH = UUID.fromString(request.getParameter("id_ch"));
+        CuaHang ch = this.chRepo.findById(id_CH);
         try {
             BeanUtils.populate(ch,request.getParameterMap());
             this.chRepo.update(ch);
@@ -125,13 +138,5 @@ public class CuaHangServlet extends HttpServlet {
         }
         response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/cua-hang/index");
     }
-    private void delete(
-            HttpServletRequest request,
-            HttpServletResponse response
-    ) throws ServletException, IOException {
-        String ma = request.getParameter("ma");
-        QLCuaHang vm = chRepo.findByMa(ma);
-        this.chRepo.delete(vm);
-        response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/cua-hang/index");
-    }
+
 }

@@ -19,7 +19,7 @@
         function Validate() {
             var ma = document.myForm.ma.value;
             var ten = document.myForm.ten.value;
-            var diachi = document.myForm.dia_chi.value;
+            var diachi = document.myForm.diaChi.value;
 
             if(ma==""){
                 document.getElementById("error_ma").innerHTML="Không để trống trường mã";
@@ -53,12 +53,12 @@
         </div>
         <div class="form-group">
             <label>Địa chỉ</label>
-            <input type="text" name="dia_chi" class="form-control" required/>
+            <input type="text" name="diaChi" class="form-control" required/>
             <p id="error_diachi"></p>
         </div>
         <div class="form-group">
             <label>Thành phố</label>
-            <select name="thanh_pho" class="form-select">
+            <select name="thanhPho" class="form-select">
                 <option>Hà Nội</option>
                 <option>Đà Nẵng</option>
                 <option>HCM</option>
@@ -66,7 +66,7 @@
         </div>
         <div class="form-group">
             <label>Quốc gia</label>
-            <select name="quoc_gia" class="form-select">
+            <select name="quocGia" class="form-select">
                 <option>Việt Nam</option>
                 <option>Lào</option>
                 <option>Thái Lan</option>

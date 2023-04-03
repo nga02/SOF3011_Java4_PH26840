@@ -2,34 +2,36 @@ package DomainModel;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Entity
 @Table(name="ChiTietSP")
 public class ChiTietSP {
     @Id
     @Column(name = "Id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
-    @ManyToOne(fetch = FetchType.EAGER )
+    @ManyToOne
     @JoinColumn(name = "IdSP", nullable = false)
     private SanPham idSP;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "IdNsx",nullable = false)
     private NhaSX idNsx;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "IdMauSac",nullable = false)
     private MauSac idMauSac;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "IdDongSP",nullable = false)
     private DongSP idDongSP;
 
     @Column(name = "NamBH")
-    private int idNamBH;
+    private int namBH;
 
     @Column(name = "MoTa")
     private String mota;
@@ -46,24 +48,24 @@ public class ChiTietSP {
     public ChiTietSP() {
     }
 
-    public ChiTietSP(String id, SanPham idSP, NhaSX idNsx, MauSac idMauSac, DongSP idDongSP, int idNamBH, String mota, int soLuongTon, BigDecimal giaNhap, BigDecimal giaBan) {
+    public ChiTietSP(UUID id, SanPham idSP, NhaSX idNsx, MauSac idMauSac, DongSP idDongSP, int namBH, String mota, int soLuongTon, BigDecimal giaNhap, BigDecimal giaBan) {
         this.id = id;
         this.idSP = idSP;
         this.idNsx = idNsx;
         this.idMauSac = idMauSac;
         this.idDongSP = idDongSP;
-        this.idNamBH = idNamBH;
+        this.namBH = namBH;
         this.mota = mota;
         this.soLuongTon = soLuongTon;
         this.giaNhap = giaNhap;
         this.giaBan = giaBan;
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -99,12 +101,12 @@ public class ChiTietSP {
         this.idDongSP = idDongSP;
     }
 
-    public int getIdNamBH() {
-        return idNamBH;
+    public int getNamBH() {
+        return namBH;
     }
 
-    public void setIdNamBH(int idNamBH) {
-        this.idNamBH = idNamBH;
+    public void setNamBH(int namBH) {
+        this.namBH = namBH;
     }
 
     public String getMota() {
@@ -139,19 +141,4 @@ public class ChiTietSP {
         this.giaBan = giaBan;
     }
 
-    @Override
-    public String toString() {
-        return "ChiTietSP{" +
-                "id='" + id + '\'' +
-                ", idSP=" + idSP +
-                ", idNsx=" + idNsx +
-                ", idMauSac=" + idMauSac +
-                ", idDongSP=" + idDongSP +
-                ", idNamBH=" + idNamBH +
-                ", mota='" + mota + '\'' +
-                ", soLuongTon=" + soLuongTon +
-                ", giaNhap=" + giaNhap +
-                ", giaBan=" + giaBan +
-                '}';
-    }
 }

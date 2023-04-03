@@ -35,7 +35,7 @@
 <div class="col-8 offset-2 mt-3">
     <h1 class="text-center">QUẢN LÝ MÀU SẮC</h1>
     <form name="myForm" method="POST"
-          action="/SP23B2_SOF3011_IT17319_war_exploded/mau-sac/update?ma=${qlms.ma}">
+          action="/SP23B2_SOF3011_IT17319_war_exploded/mau-sac/update?id_ms=${qlms.id}">
         <div class="form-group">
             <label>Mã</label>
             <input type="text" name="ma" class="form-control" value="${qlms.ma}" disabled/>

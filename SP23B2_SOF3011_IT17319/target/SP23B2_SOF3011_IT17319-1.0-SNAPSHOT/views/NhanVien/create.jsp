@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="f" uri="jakarta.tags.functions" %>
 <html>
 <head>
     <title>Nhân viên</title>
@@ -19,12 +21,12 @@
         function Validate(){
             var ma = document.myForm.ma.value;
             var ho = document.myForm.ho.value;
-            var tendem = document.myForm.ten_dem.value;
+            var tendem = document.myForm.tenDem.value;
             var ten = document.myForm.ten.value;
-            var diachi = document.myForm.dia_chi.value;
-            var ngaysinh = document.myForm.ngay_sinh.value;
+            var diachi = document.myForm.diaChi.value;
+            var ngaysinh = document.myForm.ngaySinh.value;
             var sdt = document.myForm.sdt.value;
-            var mk = document.myForm.mat_khau.value;
+            var mk = document.myForm.matKhau.value;
             var vnf_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
             if(ma==""){
                 document.getElementById("error_ma").innerHTML="Không để trống trường mã";
@@ -84,18 +86,18 @@
 
             <div class="col-6">
                 <label>Ngày sinh</label>
-                <input type="date" name="ngay_sinh" class="form-control" required/>
+                <input type="date" name="ngaySinh" class="form-control" required/>
                 <p id="error_ngaysinh"></p>
             </div>
             <div class="col-6">
                 <label>Tên đệm</label>
-                <input type="text" name="ten_dem" class="form-control" required/>
+                <input type="text" name="tenDem" class="form-control" required/>
                 <p id="error_tendem"></p>
             </div>
 
             <div class="col-6">
                 <label>Mật khẩu</label>
-                <input type="password" name="mat_khau" class="form-control" placeholder="" required/>
+                <input type="password" name="matKhau" class="form-control" placeholder="" required/>
                 <p id="error_mk"></p>
             </div>
 
@@ -108,25 +110,24 @@
             </div>
             <div class="col-6">
                 <label>Địa chỉ</label>
-                <input type="text" name="dia_chi" class="form-control" required/>
+                <input type="text" name="diaChi" class="form-control" required/>
                 <p id="error_diachi"></p>
             </div>
 
             <div class="col-6 mt-2">
                 <label>Cửa hàng</label>
                 <select name="id_ch" class="form-select">
-                    <option>Cửa hàng 1</option>
-                    <option>Cửa hàng 2</option>
-                    <option>Cửa hàng 3</option>
+                    <c:forEach items="${lstCH}" var="ch">
+                        <option value="${ch.id}">${ch.ten} </option>
+                    </c:forEach>
                 </select>
             </div>
             <div class="col-6 mt-2">
                 <label>Chức vụ</label>
                 <select name="id_cv" class="form-select">
-                    <option>Nhân viên</option>
-                    <option>Bảo vệ</option>
-                    <option>Quản lý</option>
-                    <option>Trưởng phòng</option>
+                    <c:forEach items="${lstCV}" var="cv">
+                        <option value="${cv.id}">${cv.ten} </option>
+                    </c:forEach>
                 </select>
             </div>
 
@@ -134,17 +135,17 @@
             <div class="col-6">
                 <label>Giới tính:</label>
                 <div>
-                    <input type="radio" id="nam" name="gioi_tinh" value="Nam" checked/>
+                    <input type="radio" id="nam" name="gioiTinh" value="Nam" checked/>
                     <label>Nam</label>
-                    <input type="radio" id="nu" name="gioi_tinh" value="Nữ">
+                    <input type="radio" id="nu" name="gioiTinh" value="Nữ">
                     <label>Nữ</label>
                 </div>
             </div>
             <div class="col-6">
                 <label>Trạng thái</label>
                 <div>
-                    <input type="radio" name="trang_thai" value="0" checked/>Đang hoạt động
-                    <input type="radio" name="trang_thai" value="1"/>Không hoạt động
+                    <input type="radio" name="trangThai" value="0" checked/>Đang hoạt động
+                    <input type="radio" name="trangThai" value="1"/>Không hoạt động
                 </div>
             </div>
         </div>

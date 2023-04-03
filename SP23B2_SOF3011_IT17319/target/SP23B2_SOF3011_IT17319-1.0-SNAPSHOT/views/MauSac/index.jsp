@@ -44,10 +44,10 @@
                     <td>${ms.ma}</td>
                     <td>${ms.ten}</td>
                     <td>
-                        <a href="/SP23B2_SOF3011_IT17319_war_exploded/mau-sac/delete?ma=${ms.ma}" class="btn btn-danger">Delete</a>
+                        <a href="/SP23B2_SOF3011_IT17319_war_exploded/mau-sac/delete?id=${ms.id}" class="btn btn-danger">Delete</a>
                     </td>
                     <td>
-                        <a href="/SP23B2_SOF3011_IT17319_war_exploded/mau-sac/edit?ma=${ms.ma}" class="btn btn-primary">Update</a>
+                        <a href="/SP23B2_SOF3011_IT17319_war_exploded/mau-sac/edit?id=${ms.id}" class="btn btn-primary">Update</a>
                     </td>
                 </tr>
             </c:forEach>

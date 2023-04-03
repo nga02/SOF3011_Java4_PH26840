@@ -53,25 +53,25 @@
                 <tr>
                     <td>${ nv.ma }</td>
                     <td>${ nv.ho }</td>
-                    <td>${ nv.ten_dem}</td>
+                    <td>${ nv.tenDem}</td>
                     <td>${ nv.ten }</td>
-                    <td>${ nv.gioi_tinh}</td>
-                    <td>${ nv.ngay_sinh}</td>
-                    <td>${ nv.dia_chi}</td>
+                    <td>${ nv.gioiTinh}</td>
+                    <td>${ nv.ngaySinh}</td>
+                    <td>${ nv.diaChi}</td>
                     <td>${ nv.sdt}</td>
-                    <td>${ nv.mat_khau}</td>
-                    <td>${ nv.id_ch}</td>
-                    <td>${ nv.id_cv}</td>
+                    <td>${ nv.matKhau}</td>
+                    <td>${ nv.idCH.ten}</td>
+                    <td>${ nv.idCV.ten}</td>
                     <td>
-                        <c:if test="${nv.trang_thai == 0}">Đang hoạt động</c:if>
-                        <c:if test="${nv.trang_thai == 1}">Không hoạt động</c:if>
+                        <c:if test="${nv.trangThai == 0}">Đang hoạt động</c:if>
+                        <c:if test="${nv.trangThai == 1}">Không hoạt động</c:if>
                     </td>
                     <td>
-                        <a href="/SP23B2_SOF3011_IT17319_war_exploded/nhan-vien/delete?ma=${nv.ma}"
+                        <a href="/SP23B2_SOF3011_IT17319_war_exploded/nhan-vien/delete?id=${nv.id}"
                            class="btn btn-danger">Delete</a>
                     </td>
                     <td>
-                        <a href="/SP23B2_SOF3011_IT17319_war_exploded/nhan-vien/edit?ma=${nv.ma}"
+                        <a href="/SP23B2_SOF3011_IT17319_war_exploded/nhan-vien/edit?id=${nv.id}"
                            class="btn btn-primary">Update</a>
                     </td>
                 </tr>

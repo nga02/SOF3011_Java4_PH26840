@@ -37,7 +37,7 @@
 <div class="col-8 offset-2 mt-3">
     <h1 class="text-center">QUẢN LÝ DÒNG SẢN PHẨM</h1>
     <form name="myForm" method="POST"
-          action="/SP23B2_SOF3011_IT17319_war_exploded/dong-sp/update?ma=${qldsp.ma}">
+          action="/SP23B2_SOF3011_IT17319_war_exploded/dong-sp/update?id_DSP=${qldsp.id}">
         <div class="form-group">
             <label>Mã</label>
             <input type="text" name="ma" class="form-control" value="${qldsp.ma}" disabled/>

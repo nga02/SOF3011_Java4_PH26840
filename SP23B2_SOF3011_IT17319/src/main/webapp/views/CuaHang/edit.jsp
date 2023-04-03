@@ -19,20 +19,22 @@
         function Validate() {
             var ma = document.myForm.ma.value;
             var ten = document.myForm.ten.value;
-            var diachi = document.myForm.dia_chi.value;
+            var diachi = document.myForm.diaChi.value;
 
-            if(ma==""){
-                document.getElementById("error_ma").innerHTML="Không để trống trường mã";
-            }if(ten==""){
-                document.getElementById("error_ten").innerHTML="Không để trống trường tên";
-            } if(diachi==""){
-                document.getElementById("error_diachi").innerHTML="Không để trống trường địa chỉ";
+            if (ma == "") {
+                document.getElementById("error_ma").innerHTML = "Không để trống trường mã";
+            }
+            if (ten == "") {
+                document.getElementById("error_ten").innerHTML = "Không để trống trường tên";
+            }
+            if (diachi == "") {
+                document.getElementById("error_diachi").innerHTML = "Không để trống trường địa chỉ";
             }
 
         }
     </script>
     <style>
-        .form-group p{
+        .form-group p {
             color: red;
         }
     </style>
@@ -40,7 +42,7 @@
 <body>
 <div class="col-8 offset-2 mt-3">
     <h1 class="text-center">QUẢN LÝ CỬA HÀNG</h1>
-    <form name="myForm" method="POST" action="/SP23B2_SOF3011_IT17319_war_exploded/cua-hang/update?ma=${qlch.ma}">
+    <form name="myForm" method="POST" action="/SP23B2_SOF3011_IT17319_war_exploded/cua-hang/update?id_ch=${qlch.id}">
         <div class="form-group">
             <label>Mã</label>
             <input type="text" name="ma" class="form-control" value="${qlch.ma}" disabled/>
@@ -53,23 +55,23 @@
         </div>
         <div class="form-group">
             <label>Địa chỉ</label>
-            <input type="text" name="dia_chi" class="form-control" value="${qlch.dia_chi}" required/>
+            <input type="text" name="diaChi" class="form-control" value="${qlch.diaChi}" required/>
             <p id="error_diachi"></p>
         </div>
         <div class="form-group">
             <label>Thành phố</label>
-            <select name="thanh_pho" class="form-select"/>
-                <option value="Hà Nội" ${ qlch.thanh_pho == "Hà Nội" ? "selected" : "" } >Hà Nội</option>
-                <option value="Đà Nẵng" ${ qlch.thanh_pho == "Đà Nẵng" ? "selected" : "" }>Đà Nẵng</option>
-                <option value="Hồ Chí Minh" ${ qlch.thanh_pho == "Hồ Chí Minh" ? "selected" : "" }>Hồ Chí Minh</option>
+            <select name="thanhPho" class="form-select"/>
+                <option value="Hà Nội" ${ qlch.thanhPho == "Hà Nội" ? "selected" : "" } >Hà Nội</option>
+                <option value="Đà Nẵng" ${ qlch.thanhPho == "Đà Nẵng"? "selected" : "" }>Đà Nẵng</option>
+                <option value="Hồ Chí Minh" ${ qlch.thanhPho == "Hồ Chí Minh" ? "selected" : "" }>Hồ Chí Minh</option>
             </select>
         </div>
         <div class="form-group">
             <label>Quốc gia</label>
-            <select name="quoc_gia" class="form-select"/>
-                <option value="Việt Nam" ${ qlch.quoc_gia == "Việt Nam" ? "selected" : "" } >Việt Nam</option>
-                <option value="Thái Lan" ${ qlch.quoc_gia == "Thái Lan" ? "selected" : "" }>Thái Lan</option>
-                <option value="Campuchia" ${ qlch.quoc_gia == "Campuchia" ? "selected" : "" }>Campuchia</option>
+            <select name="quocGia" class="form-select"/>
+                <option value="Việt Nam" ${ qlch.quocGia == "Việt Nam" ? "selected" : "" } >Việt Nam</option>
+                <option value="Thái Lan" ${ qlch.quocGia == "Thái Lan" ? "selected" : "" }>Thái Lan</option>
+                <option value="Hàn Quốc" ${ qlch.quocGia == "Hàn Quốc" ? "selected" : "" }>Hàn Quốc</option>
             </select>
         </div>
 

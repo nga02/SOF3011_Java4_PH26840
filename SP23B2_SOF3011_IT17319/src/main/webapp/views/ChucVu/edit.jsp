@@ -35,11 +35,10 @@
 <div class="col-8 offset-2 mt-3">
     <h1 class="text-center">QUẢN LÝ CHỨC VỤ</h1>
     <form name="myForm" method="POST"
-          action="/SP23B2_SOF3011_IT17319_war_exploded/chuc-vu/update?ma=${qlcv.ma}">
+          action="/SP23B2_SOF3011_IT17319_war_exploded/chuc-vu/update?id_cv=${qlcv.id}">
         <div class="form-group">
             <label>Mã</label>
             <input type="text" name="ma" class="form-control" value="${qlcv.ma}" disabled/>
-
         </div>
         <div class="form-group">
             <label>Tên</label>

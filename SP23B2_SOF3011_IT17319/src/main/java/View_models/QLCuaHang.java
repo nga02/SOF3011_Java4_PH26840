@@ -1,4 +1,4 @@
-package View_models;
+package view_models;
 
 public class QLCuaHang {
     private String ma;

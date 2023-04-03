@@ -33,7 +33,7 @@
     <h1 class="text-center">QUẢN LÝ NSX</h1>
     <form name="myForm" method="POST"
           action="/SP23B2_SOF3011_IT17319_war_exploded/nsx/store">
-        <div class="row">
+
             <div class="form-group">
                 <label>Mã</label>
                 <input type="text" name="ma" class="form-control" required/>
@@ -44,7 +44,7 @@
                 <input type="text" name="ten" class="form-control" required/>
                 <p id="error_ten"></p>
             </div>
-        </div>
+
 
 
         <div class="mt-2">

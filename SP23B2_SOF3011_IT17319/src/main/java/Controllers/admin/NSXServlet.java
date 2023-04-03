@@ -1,15 +1,17 @@
 package controllers.admin;
 
+import DomainModel.DongSP;
+import DomainModel.NhaSX;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import org.apache.commons.beanutils.BeanUtils;
 import repository.NSXRepository;
-import View_models.QLNSX;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.UUID;
 
 @WebServlet({
         "/nsx/index",
@@ -23,8 +25,6 @@ public class NSXServlet extends HttpServlet {
     private NSXRepository nsxRepo;
     public NSXServlet(){
         this.nsxRepo=new NSXRepository();
-        nsxRepo.insert(new QLNSX("NSX01","NSX Đại học quốc gia HÀ NỘI"));
-        nsxRepo.insert(new QLNSX("NSX02","NSX Đại học Bách Khoa"));
     }
 
     @Override
@@ -42,6 +42,32 @@ public class NSXServlet extends HttpServlet {
         }
     }
 
+    private void create(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws ServletException, IOException {
+        request.setAttribute("view","/views/NSX/create.jsp");
+        request.getRequestDispatcher("/views/layout.jsp")
+                .forward(request, response);
+    }
+    private void edit(HttpServletRequest request,
+                      HttpServletResponse response
+    ) throws ServletException, IOException {
+        UUID id_ns= UUID.fromString(request.getParameter("id"));
+        NhaSX nsx = this.nsxRepo.findById(id_ns);
+        request.setAttribute("qlnsx", nsx);
+        request.setAttribute("view","/views/NSX/edit.jsp");
+        request.getRequestDispatcher("/views/layout.jsp")
+                .forward(request, response);
+    }
+    private void delete(HttpServletRequest request,
+                        HttpServletResponse response
+    ) throws ServletException, IOException {
+        UUID id_nsx= UUID.fromString(request.getParameter("id"));
+        NhaSX nsx = this.nsxRepo.findById(id_nsx);
+        this.nsxRepo.delete(nsx);
+        response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/nsx/index");
+    }
     @Override
     protected void doPost(
             HttpServletRequest request,
@@ -65,18 +91,11 @@ public class NSXServlet extends HttpServlet {
         request.getRequestDispatcher("/views/layout.jsp")
                 .forward(request, response);
     }
-    private void create(
-            HttpServletRequest request,
-            HttpServletResponse response
-    ) throws ServletException, IOException {
-        request.setAttribute("view","/views/NSX/create.jsp");
-        request.getRequestDispatcher("/views/layout.jsp")
-                .forward(request, response);
-    }
+
     private void store(HttpServletRequest request,
                        HttpServletResponse response
     ) throws ServletException, IOException {
-        QLNSX nsx = new QLNSX();
+        NhaSX nsx = new NhaSX();
         try {
             BeanUtils.populate(nsx,request.getParameterMap());
             this.nsxRepo.insert(nsx);
@@ -87,20 +106,12 @@ public class NSXServlet extends HttpServlet {
         }
         response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/nsx/index");
     }
-    private void edit(HttpServletRequest request,
-                      HttpServletResponse response
-    ) throws ServletException, IOException {
-        String ma = request.getParameter("ma");
-        QLNSX vm = this.nsxRepo.findByMa(ma);
-        request.setAttribute("qlnsx", vm);
-        request.setAttribute("view","/views/NSX/edit.jsp");
-        request.getRequestDispatcher("/views/layout.jsp")
-                .forward(request, response);
-    }
+
     private void update(HttpServletRequest request,
                         HttpServletResponse response
     ) throws ServletException, IOException{
-        QLNSX nsx = new  QLNSX();
+        UUID id_nsx= UUID.fromString(request.getParameter("id_nsx"));
+        NhaSX nsx = this.nsxRepo.findById(id_nsx);
         try {
             BeanUtils.populate(nsx,request.getParameterMap());
             this.nsxRepo.update(nsx);
@@ -109,15 +120,6 @@ public class NSXServlet extends HttpServlet {
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
-        response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/nsx/index");
-    }
-
-    private void delete(HttpServletRequest request,
-                        HttpServletResponse response
-    ) throws ServletException, IOException {
-        String ma = request.getParameter("ma");
-        QLNSX vm = nsxRepo.findByMa(ma);
-        this.nsxRepo.delete(vm);
         response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/nsx/index");
     }
 }

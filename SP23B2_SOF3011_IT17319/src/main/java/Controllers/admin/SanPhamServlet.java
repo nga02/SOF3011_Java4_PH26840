@@ -1,15 +1,17 @@
 package controllers.admin;
 
+import DomainModel.NhaSX;
+import DomainModel.SanPham;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import org.apache.commons.beanutils.BeanUtils;
 import repository.SanPhamRepository;
-import View_models.QLSanPham;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.UUID;
 
 @WebServlet({
         "/san-pham/index",
@@ -23,8 +25,6 @@ public class SanPhamServlet extends HttpServlet {
     private SanPhamRepository spRepo;
     public SanPhamServlet(){
         this.spRepo = new SanPhamRepository();
-        spRepo.insert(new QLSanPham("SP01","Kem chống nắng"));
-        spRepo.insert(new QLSanPham("SP02","Sữa rửa mặt"));
     }
     @Override
     protected void doGet(
@@ -44,6 +44,46 @@ public class SanPhamServlet extends HttpServlet {
         }
     }
 
+    private void create(HttpServletRequest request,
+                        HttpServletResponse response
+    ) throws ServletException, IOException {
+        request.setAttribute("view","/views/SanPham/create.jsp");
+        request.getRequestDispatcher("/views/layout.jsp")
+                .forward(request, response);
+    }
+
+    private void edit(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws ServletException, IOException {
+        UUID id_nsp= UUID.fromString(request.getParameter("id"));
+        SanPham sp = this.spRepo.findById(id_nsp);
+        request.setAttribute("qlsp", sp);
+        request.setAttribute("view","/views/SanPham/edit.jsp");
+        request.getRequestDispatcher("/views/layout.jsp")
+                .forward(request, response);
+    }
+
+    private void delete(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws ServletException, IOException {
+        UUID id_nsx= UUID.fromString(request.getParameter("id"));
+        SanPham sp = this.spRepo.findById(id_nsx);
+        this.spRepo.delete(sp);
+        response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/san-pham/index");
+    }
+
+    private void index(
+            HttpServletRequest request,
+            HttpServletResponse response
+    )throws ServletException, IOException {
+        request.setAttribute("ds",spRepo.findAll());
+        request.setAttribute("view", "/views/SanPham/index.jsp");
+        request.getRequestDispatcher("/views/layout.jsp")
+                .forward(request, response);
+    }
+
     @Override
     protected void doPost(
             HttpServletRequest request,
@@ -58,28 +98,13 @@ public class SanPhamServlet extends HttpServlet {
             response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/san-pham/index");
         }
     }
-    private void index(
-            HttpServletRequest request,
-            HttpServletResponse response
-    )throws ServletException, IOException {
-        request.setAttribute("ds",spRepo.findAll());
-        request.setAttribute("view", "/views/SanPham/index.jsp");
-        request.getRequestDispatcher("/views/layout.jsp")
-                .forward(request, response);
-    }
 
-    private void create(HttpServletRequest request,
-                       HttpServletResponse response
-    ) throws ServletException, IOException {
-        request.setAttribute("view","/views/SanPham/create.jsp");
-        request.getRequestDispatcher("/views/layout.jsp")
-                .forward(request, response);
-    }
+
     private void store(
             HttpServletRequest request,
             HttpServletResponse response
     ) throws ServletException, IOException {
-       QLSanPham s = new QLSanPham();
+      SanPham s = new SanPham();
         try {
             BeanUtils.populate(s,request.getParameterMap());
             this.spRepo.insert(s);
@@ -91,41 +116,22 @@ public class SanPhamServlet extends HttpServlet {
         response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/san-pham/index");
     }
 
-    private void edit(
-            HttpServletRequest request,
-            HttpServletResponse response
-    ) throws ServletException, IOException {
-        String ma = request.getParameter("ma");
-        QLSanPham vm = spRepo.findByMa(ma);
-        request.setAttribute("qlsp", vm);
-        request.setAttribute("view","/views/SanPham/edit.jsp");
-        request.getRequestDispatcher("/views/layout.jsp")
-                .forward(request, response);
-    }
+
 
     private void update(
             HttpServletRequest request,
             HttpServletResponse response
     ) throws ServletException, IOException {
-        QLSanPham kh = new QLSanPham();
+        UUID id_sp1= UUID.fromString(request.getParameter("id_sp"));
+        SanPham sp = this.spRepo.findById(id_sp1);
         try {
-            BeanUtils.populate(kh, request.getParameterMap());
-            this.spRepo.update(kh);
+            BeanUtils.populate(sp, request.getParameterMap());
+            this.spRepo.update(sp);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
-        response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/san-pham/index");
-    }
-
-    private void delete(
-            HttpServletRequest request,
-            HttpServletResponse response
-    ) throws ServletException, IOException {
-        String ma = request.getParameter("ma");
-        QLSanPham vm = spRepo.findByMa(ma);
-        this.spRepo.delete(vm);
         response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/san-pham/index");
     }
 }

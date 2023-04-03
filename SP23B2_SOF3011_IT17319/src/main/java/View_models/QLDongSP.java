@@ -1,4 +1,4 @@
-package View_models;
+package view_models;
 
 public class QLDongSP {
     private String ma;

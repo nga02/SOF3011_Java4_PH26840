@@ -35,7 +35,7 @@
 <div class="col-8 offset-2 mt-3">
     <h1 class="text-center">QUẢN LÝ NHÀ SẢN XUẤT</h1>
     <form name="myForm" method="POST"
-          action="/SP23B2_SOF3011_IT17319_war_exploded/nsx/update?ma=${qlnsx.ma}">
+          action="/SP23B2_SOF3011_IT17319_war_exploded/nsx/update?id_nsx=${qlnsx.id}">
         <div class="form-group">
             <label>Mã</label>
             <input type="text" name="ma" class="form-control" value="${qlnsx.ma}" disabled/>

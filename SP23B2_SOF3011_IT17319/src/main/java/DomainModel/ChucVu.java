@@ -2,6 +2,7 @@ package DomainModel;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -17,7 +18,8 @@ public class ChucVu {
 
     @Column(name="Ten")
     private String ten;
-
+//@One To Many
+//    private List<NhanVien> listNhanVien;
     public ChucVu() {
     }
 

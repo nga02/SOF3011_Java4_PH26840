@@ -58,10 +58,10 @@
                         <td>${ kh.thanhPho }</td>
                         <td>${ kh.quocGia }</td>
                         <td>
-                            <a href="/SP23B2_SOF3011_IT17319_war_exploded/khach-hang/edit?ma=${ kh.ma }" class="btn btn-primary">Update</a>
+                            <a href="/SP23B2_SOF3011_IT17319_war_exploded/khach-hang/edit?id=${ kh.id }" class="btn btn-primary">Update</a>
                         </td>
                         <td>
-                            <a href="/SP23B2_SOF3011_IT17319_war_exploded/khach-hang/delete?ma=${ kh.ma }" class="btn btn-danger">Delete</a>
+                            <a href="/SP23B2_SOF3011_IT17319_war_exploded/khach-hang/delete?id=${ kh.id }" class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
                 </c:forEach>

@@ -1,45 +1,66 @@
 package repository;
 
-import View_models.QLNSX;
+import DomainModel.NhaSX;
+import Utils.HibernateUtil;
+import jakarta.persistence.TypedQuery;
+import org.hibernate.Session;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 public class NSXRepository {
-    private ArrayList<QLNSX> ds;
+    private Session hSession;
 
     public NSXRepository() {
-        this.ds = new ArrayList<>();
+        this.hSession = HibernateUtil.getFACTORY().openSession();
     }
 
-    public void insert(QLNSX qlnsx) {
-        ds.add(qlnsx);
+    public void insert(NhaSX nsx) {
+      try{
+          this.hSession.getTransaction().begin();
+          this.hSession.persist(nsx);
+          this.hSession.getTransaction().commit();
+      }catch(Exception e){
+          e.printStackTrace();
+          this.hSession.getTransaction().rollback();
+      }
     }
 
-    public void update(QLNSX qlnsx) {
-        for (int i = 0; i < this.ds.size(); i++) {
-            QLNSX vm = this.ds.get(i);
-            if (vm.getMa().equals(qlnsx.getMa())) {
-                this.ds.set(i, qlnsx);
-            }
+    public void update(NhaSX nsx) {
+        try {
+            this.hSession.getTransaction().begin();
+            this.hSession.update(nsx);
+            this.hSession.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            this.hSession.getTransaction().rollback();
         }
     }
-    public void delete(QLNSX qlnsx){
-        for (int i = 0; i < this.ds.size(); i++) {
-            QLNSX nsxvm = this.ds.get(i);
-            if(nsxvm.getMa().equals(qlnsx.getMa())){
-                this.ds.remove(i);
-            }
+    public void delete(NhaSX nsx) {
+        try{
+            this.hSession.getTransaction().begin();
+            this.hSession.delete(nsx);
+            this.hSession.getTransaction().commit();
+        }catch(Exception e){
+            e.printStackTrace();
+            this.hSession.getTransaction().rollback();
         }
     }
-    public ArrayList<QLNSX> findAll(){
-        return this.ds;
+    public List<NhaSX> findAll(){
+        String hql = "SELECT n FROM NhaSX n";
+        TypedQuery<NhaSX> q = this.hSession.createQuery(hql,NhaSX.class);
+        return q.getResultList();
     }
-    public QLNSX findByMa(String ma){
-        for (QLNSX nsxvm:this.ds) {
-            if(nsxvm.getMa().equals(ma)){
-                return nsxvm;
-            }
-        }
-        return null;
+    public NhaSX findByMa(String ma){
+        String hql = "SELECT n FROM NhaSX n WHERE n.ma = ?1";
+        TypedQuery<NhaSX> q = this.hSession.createQuery(hql,NhaSX.class);
+        q.setParameter(1,ma);
+        return q.getSingleResult();
+    }
+    public NhaSX findById(UUID id){
+        String hql = "SELECT n FROM NhaSX n WHERE n.id = ?1";
+        TypedQuery<NhaSX> q = this.hSession.createQuery(hql,NhaSX.class);
+        q.setParameter(1,id);
+        return q.getSingleResult();
     }
 }

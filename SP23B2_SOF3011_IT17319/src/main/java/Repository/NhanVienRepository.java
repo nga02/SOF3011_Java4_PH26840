@@ -1,50 +1,76 @@
 package repository;
 
-import View_models.QLNhanVien;
+import DomainModel.ChiTietSP;
+import DomainModel.NhanVien;
+import Utils.HibernateUtil;
+import jakarta.persistence.TypedQuery;
+import org.hibernate.Session;
+import view_models.QLNhanVien;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 public class NhanVienRepository {
-    private ArrayList<QLNhanVien> ds;
+    private Session hSession;
 
     public NhanVienRepository() {
-
-        this.ds = new ArrayList<>();
+        this.hSession = HibernateUtil.getFACTORY().openSession();
     }
 
-    public void insert(QLNhanVien qlnv) {
-        this.ds.add(qlnv);
-    }
-
-    public void update(QLNhanVien qlnv) {
-        for (int i = 0; i < this.ds.size(); i++) {
-            QLNhanVien vm = this.ds.get(i);
-            if (vm.getMa().equals(qlnv.getMa())) {
-                this.ds.set(i, qlnv);
-            }
+    public void insert(NhanVien nv) {
+        try {
+            this.hSession.getTransaction().begin();
+            this.hSession.persist(nv);
+            this.hSession.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            this.hSession.getTransaction().rollback();
         }
+
     }
 
-    public void delete(QLNhanVien qlnv) {
-        for (int i = 0; i < this.ds.size(); i++) {
-            QLNhanVien vm = this.ds.get(i);
-            if (vm.getMa().equals(qlnv.getMa())) {
-                this.ds.remove(i);
-            }
+    public void update(NhanVien nv) {
+        try {
+            this.hSession.getTransaction().begin();
+            this.hSession.update(nv);
+            this.hSession.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            this.hSession.getTransaction().rollback();
         }
+
     }
 
-    public ArrayList<QLNhanVien> findAll() {
-
-        return this.ds;
-    }
-
-    public QLNhanVien findByMa(String ma) {
-        for (QLNhanVien vm : this.ds) {
-            if (vm.getMa().equals(ma)) {
-                return vm;
-            }
+    public void delete(NhanVien nv) {
+        try {
+            this.hSession.getTransaction().begin();
+            this.hSession.delete(nv);
+            this.hSession.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            this.hSession.getTransaction().rollback();
         }
-        return null;
+
+    }
+
+    public List<NhanVien> findAll() {
+        String hql = "SELECT c FROM NhanVien c";
+        TypedQuery<NhanVien> q = this.hSession.createQuery(hql,NhanVien.class);
+        return q.getResultList();
+    }
+
+    public NhanVien findById(UUID id) {
+        String hql = "SELECT c FROM NhanVien c WHERE  c.id = ?1";
+        TypedQuery<NhanVien> q = this.hSession.createQuery(hql, NhanVien.class);
+        q.setParameter(1, id);
+        return q.getSingleResult();
+    }
+
+    public NhanVien findByMa(String ma) {
+        String hql = "SELECT c FROM NhanVien c WHERE  c.ma = ?1";
+        TypedQuery<NhanVien> q = this.hSession.createQuery(hql, NhanVien.class);
+        q.setParameter(1, ma);
+        return q.getSingleResult();
     }
 }

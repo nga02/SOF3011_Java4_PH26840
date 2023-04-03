@@ -6,10 +6,10 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import org.apache.commons.beanutils.BeanUtils;
 import repository.KhachHangRepository;
-import View_models.QLKhachHang;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.UUID;
 
 @WebServlet({
         "/khach-hang/index",    // GET
@@ -45,9 +45,8 @@ public class KhachHangServlet extends HttpServlet {
         }
     }
 
-    private void create(
-            HttpServletRequest request,
-            HttpServletResponse response
+    private void create(HttpServletRequest request,
+                        HttpServletResponse response
     ) throws ServletException, IOException {
         request.setAttribute("view", "/views/KhachHang/create.jsp");
         request.getRequestDispatcher("/views/layout.jsp")
@@ -58,8 +57,8 @@ public class KhachHangServlet extends HttpServlet {
             HttpServletRequest request,
             HttpServletResponse response
     ) throws ServletException, IOException {
-        String ma = request.getParameter("ma");
-        KhachHang domainKH = this.khRepo.findByMa(ma);
+        UUID id = UUID.fromString(request.getParameter("id"));
+        KhachHang domainKH = this.khRepo.findById(id);
         request.setAttribute("qlkh", domainKH);
         request.setAttribute("view", "/views/KhachHang/edit.jsp");
         request.getRequestDispatcher("/views/layout.jsp")
@@ -69,8 +68,8 @@ public class KhachHangServlet extends HttpServlet {
     private void delete(HttpServletRequest request,
                         HttpServletResponse response
     ) throws ServletException, IOException {
-        String ma = request.getParameter("ma");
-        KhachHang domainKH = this.khRepo.findByMa(ma);
+        UUID id = UUID.fromString(request.getParameter("id"));
+        KhachHang domainKH = this.khRepo.findById(id);
         this.khRepo.delete(domainKH);
         //Điều hướng request về index
         response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/khach-hang/index");
@@ -123,8 +122,8 @@ public class KhachHangServlet extends HttpServlet {
             HttpServletRequest request,
             HttpServletResponse response
     ) throws ServletException, IOException {
-        String ma = request.getParameter("ma");
-        KhachHang domainKH = this.khRepo.findByMa(ma);
+        UUID id = UUID.fromString(request.getParameter("id_kh"));
+        KhachHang domainKH = this.khRepo.findById(id);
         try {
             BeanUtils.populate(domainKH, request.getParameterMap());
             this.khRepo.update(domainKH);
