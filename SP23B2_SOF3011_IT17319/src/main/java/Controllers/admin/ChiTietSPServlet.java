@@ -119,35 +119,28 @@ public class ChiTietSPServlet extends HttpServlet {
             HttpServletRequest request,
             HttpServletResponse response
     ) throws ServletException, IOException {
+//        double giaNhapStr = Double.parseDouble(request.getParameter("giaNhap"));
+//        BigDecimal giaNhap = BigDecimal.valueOf(giaNhapStr);
+//        ctsp.setGiaNhap(giaNhap);
+
         ChiTietSP ctsp = new ChiTietSP();
+        MauSac ms = this.msRepo.findById(UUID.fromString(request.getParameter("id_MauSac")));
+        NhaSX nsx = this.nsxRepo.findById(UUID.fromString(request.getParameter("id_Nsx")));
+        DongSP dsp = this.dongspRepo.findById(UUID.fromString(request.getParameter("id_DongSP")));
+        SanPham sp = this.spRepo.findById(UUID.fromString(request.getParameter("id_SP")));
 
-        ctsp.setIdSP(spRepo.findById(UUID.fromString(request.getParameter("idSP"))));
-        ctsp.setIdDongSP(dongspRepo.findById(UUID.fromString(request.getParameter("idDongSP"))));
-        ctsp.setIdMauSac(msRepo.findById(UUID.fromString(request.getParameter("idMauSac"))));
-        ctsp.setIdNsx(nsxRepo.findById(UUID.fromString(request.getParameter("idNsx"))));
-        ctsp.setNamBH(Integer.parseInt(request.getParameter("namBH")));
-        ctsp.setMota(request.getParameter("mota"));
-        ctsp.setSoLuongTon(Integer.parseInt(request.getParameter("soLuongTon")));
-
-        double giaNhapStr = Double.parseDouble(request.getParameter("giaNhap"));
-        BigDecimal giaNhap = BigDecimal.valueOf(giaNhapStr);
-        ctsp.setGiaNhap(giaNhap);
-
-        double giaBanStr = Double.parseDouble(request.getParameter("giaBan"));
-        BigDecimal giaBan = BigDecimal.valueOf(giaBanStr);
-        ctsp.setGiaBan(giaBan);
-
-        this.ctspRepo.insert(ctsp);
-
-
-//        try {
-//            BeanUtils.populate(ctsp, request.getParameterMap());
-//            this.ctspRepo.insert(ctsp);
-//        } catch (IllegalAccessException e) {
-//            e.printStackTrace();
-//        } catch (InvocationTargetException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            BeanUtils.populate(ctsp, request.getParameterMap());
+            ctsp.setIdSP(sp);
+            ctsp.setIdNsx(nsx);
+            ctsp.setIdMauSac(ms);
+            ctsp.setIdDongSP(dsp);
+            this.ctspRepo.insert(ctsp);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
         response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/chitiet-sp/index");
     }
 
@@ -155,36 +148,19 @@ public class ChiTietSPServlet extends HttpServlet {
             HttpServletRequest request,
             HttpServletResponse response
     ) throws ServletException, IOException {
-        UUID id = UUID.fromString(request.getParameter("id"));
+        UUID id = UUID.fromString(request.getParameter("id_ctsp"));
         ChiTietSP ctsp = this.ctspRepo.findById(id);
-//        ChiTietSP ctsp = new ChiTietSP();
-//
-
         MauSac ms = this.msRepo.findById(UUID.fromString(request.getParameter("id_MauSac")));
         NhaSX nsx = this.nsxRepo.findById(UUID.fromString(request.getParameter("id_Nsx")));
         DongSP dsp = this.dongspRepo.findById(UUID.fromString(request.getParameter("id_DongSP")));
         SanPham sp = this.spRepo.findById(UUID.fromString(request.getParameter("id_SP")));
 
-//        ctsp.setNamBH(Integer.parseInt(request.getParameter("namBH")));
-//        ctsp.setMota(request.getParameter("mota"));
-//        ctsp.setSoLuongTon(Integer.parseInt(request.getParameter("soLuongTon")));
-//
-//        double giaNhapStr = Double.parseDouble(request.getParameter("giaNhap"));
-//        BigDecimal giaNhap = BigDecimal.valueOf(giaNhapStr);
-//        ctsp.setGiaNhap(giaNhap);
-//
-//        double giaBanStr = Double.parseDouble(request.getParameter("giaBan"));
-//        BigDecimal giaBan = BigDecimal.valueOf(giaBanStr);
-//        ctsp.setGiaBan(giaBan);
-//
-//        this.ctspRepo.update(ctsp);
-
         try {
             BeanUtils.populate(ctsp, request.getParameterMap());
-            ctsp.setIdDongSP(dsp);
-            ctsp.setIdMauSac(ms);
-            ctsp.setIdNsx(nsx);
             ctsp.setIdSP(sp);
+            ctsp.setIdNsx(nsx);
+            ctsp.setIdMauSac(ms);
+            ctsp.setIdDongSP(dsp);
             this.ctspRepo.update(ctsp);
         } catch (IllegalAccessException e) {
             e.printStackTrace();

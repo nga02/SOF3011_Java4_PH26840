@@ -62,7 +62,7 @@
         <%--        </div>--%>
         <div class="form-group">
             <label>Sản phẩm</label>
-            <select name="idSP" class="form-select">
+            <select name="id_SP" class="form-select">
                 <c:forEach items="${ lstSP }" var="sp">
                     <option value="${sp.id}">${sp.ten}</option>
                 </c:forEach>
@@ -70,7 +70,7 @@
         </div>
         <div class="form-group">
             <label>NSX</label>
-                <select name="idNsx" class="form-select">
+                <select name="id_Nsx" class="form-select">
                     <c:forEach items="${ lstNSX }" var="nsx">
                         <option value="${nsx.id}">${nsx.ten}</option>
                     </c:forEach>
@@ -79,7 +79,7 @@
 
         <div class="form-group">
             <label>Màu sắc</label>
-            <select name="idMauSac" class="form-select">
+            <select name="id_MauSac" class="form-select">
                 <c:forEach items="${ lstMauSac }" var="ms">
                     <option value="${ms.id}">${ms.ten}</option>
                 </c:forEach>
@@ -88,7 +88,7 @@
         </div>
         <div class="form-group">
             <label>Dòng sản phẩm</label>
-            <select name="idDongSP" class="form-select">
+            <select name="id_DongSP" class="form-select">
                 <c:forEach items="${ lstDongSP }" var="dsp">
                     <option value="${dsp.id}">${dsp.ten}</option>
                 </c:forEach>

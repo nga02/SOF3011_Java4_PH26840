@@ -36,35 +36,35 @@
         </div>
         <div class="form-group">
             <label>Sản phẩm</label>
-
-                <select name="id_SP" class="form-select">
-                    <c:forEach items="${ lstSP }" var="sp">
-                        <option value="${sp.id} ${ctsp.idSP.id == sp.id?"selected":""}">${sp.ten}</option>
-                    </c:forEach>
-                </select>
-
+            <select name="id_SP" class="form-select">
+                <c:forEach items="${ lstSP }" var="sp">
+                    <option value="${sp.id}" ${sp.id == ctsp.idSP.id?"selected":""}>${sp.ten}</option>
+                </c:forEach>
+            </select>
         </div>
         <div class="form-group">
             <label>NSX</label>
             <select name="id_Nsx" class="form-select">
                 <c:forEach items="${ lstNSX }" var="nsx">
-                    <option value="${nsx.id} ${ctsp.idNsx.id==nsx.id?"selected":""}">${nsx.ten}</option>
+                    <option value="${nsx.id}" ${nsx.id == ctsp.idNsx.id?"selected":""}>${nsx.ten}</option>
                 </c:forEach>
             </select>
         </div>
+
         <div class="form-group">
             <label>Màu sắc</label>
             <select name="id_MauSac" class="form-select">
                 <c:forEach items="${ lstMauSac }" var="ms">
-                    <option value="${ms.id} ${ctsp.idMauSac.id==ms.id? "selected":""}">${ms.ten}</option>
+                    <option value="${ms.id}" ${ms.id == ctsp.idMauSac.id?"selected":""}>${ms.ten}</option>
                 </c:forEach>
+
             </select>
         </div>
         <div class="form-group">
             <label>Dòng sản phẩm</label>
             <select name="id_DongSP" class="form-select">
                 <c:forEach items="${ lstDongSP }" var="dsp">
-                    <option value="${dsp.id} ${ctsp.idDongSP.id==dsp.id?"selected":""}">${dsp.ten}</option>
+                    <option value="${dsp.id}" ${dsp.id == ctsp.idDongSP.id?"selected":""}>${dsp.ten}</option>
                 </c:forEach>
             </select>
         </div>
