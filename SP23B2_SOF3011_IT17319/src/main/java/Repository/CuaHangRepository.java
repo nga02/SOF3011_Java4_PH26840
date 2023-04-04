@@ -1,14 +1,14 @@
 package repository;
 
 
-import DomainModel.ChucVu;
 import DomainModel.CuaHang;
+
 import Utils.HibernateUtil;
 import jakarta.persistence.TypedQuery;
 import org.hibernate.Session;
-import view_models.QLCuaHang;
 
-import java.util.ArrayList;
+
+
 import java.util.List;
 import java.util.UUID;
 

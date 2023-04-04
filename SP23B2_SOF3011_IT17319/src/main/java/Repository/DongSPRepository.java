@@ -1,13 +1,12 @@
 package repository;
 
 import DomainModel.DongSP;
-import DomainModel.NhaSX;
 import Utils.HibernateUtil;
 import jakarta.persistence.TypedQuery;
 import org.hibernate.Session;
-import view_models.QLDongSP;
 
-import java.util.ArrayList;
+
+
 import java.util.List;
 import java.util.UUID;
 

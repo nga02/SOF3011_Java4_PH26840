@@ -1,14 +1,11 @@
 package repository;
 
 import DomainModel.ChiTietSP;
-import DomainModel.KhachHang;
+
 import Utils.HibernateUtil;
 import jakarta.persistence.TypedQuery;
 import org.hibernate.Session;
-import view_models.QLCTSP;
 
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 

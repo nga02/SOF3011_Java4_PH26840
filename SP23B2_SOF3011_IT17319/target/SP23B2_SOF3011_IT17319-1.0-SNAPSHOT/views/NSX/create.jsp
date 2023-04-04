@@ -27,6 +27,11 @@
             }
         }
     </script>
+    <style>
+        .form-group p{
+            color: red;
+        }
+    </style>
 </head>
 <body>
 <div class="col-8 offset-2 mt-3">

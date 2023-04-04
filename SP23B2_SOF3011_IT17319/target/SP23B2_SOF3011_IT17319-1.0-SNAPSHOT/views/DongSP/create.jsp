@@ -47,7 +47,7 @@
         <div class="form-group">
             <label>Dòng sản phẩm</label>
             <input type="text" name="ten" class="form-control" required/>
-            <p id="ten"></p>
+            <p id="error_ten"></p>
         </div>
 
         <div class="mt-2">

@@ -2,12 +2,13 @@ package DomainModel;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "GioHangChiTiet")
-
-public class GioHangCT {
+@IdClass(GioHangChiTietId.class)
+public class GioHangCT implements Serializable {
 
     @Id
     @ManyToOne(fetch = FetchType.EAGER)
@@ -76,16 +77,5 @@ public class GioHangCT {
 
     public void setDonGiaKhiGiam(BigDecimal donGiaKhiGiam) {
         this.donGiaKhiGiam = donGiaKhiGiam;
-    }
-
-    @Override
-    public String toString() {
-        return "GioHangCT{" +
-                "idGioHang=" + idGioHang +
-                ", idChiTietSP=" + idChiTietSP +
-                ", soLuong=" + soLuong +
-                ", donGia=" + donGia +
-                ", donGiaKhiGiam=" + donGiaKhiGiam +
-                '}';
     }
 }

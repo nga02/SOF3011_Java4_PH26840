@@ -2,11 +2,13 @@ package DomainModel;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "HoaDonChiTiet")
-public class HoaDonCT {
+@IdClass(HoaDonChiTietId.class)
+public class HoaDonCT implements Serializable {
     @Id
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "IdChiTietSP", insertable = false, updatable = false)

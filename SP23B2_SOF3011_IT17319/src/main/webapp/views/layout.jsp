@@ -27,20 +27,20 @@
             <div class="collapse navbar-collapse" id="mynavbar" style="margin-left: 30px">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link text-black" aria-current="page" href="/SP23B2_SOF3011_IT17319_war_exploded/san-pham/index"><span
+                        <a class="nav-link text-black" aria-current="page" href="/SP23B2_SOF3011_IT17319_war_exploded/admin"><span
                                 class="glyphicon  glyphicon-list "></span>Trang chủ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black" href="/SP23B2_SOF3011_IT17319_war_exploded/dong-sp/index"><span
+                        <a class="nav-link text-black" href="/SP23B2_SOF3011_IT17319_war_exploded/admin"><span
                                 class="glyphicon glyphicon-earphone"></span>Giới thiệu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black" href="/SP23B2_SOF3011_IT17319_war_exploded/mau-sac/index"><span
+                        <a class="nav-link text-black" href="/SP23B2_SOF3011_IT17319_war_exploded/admin"><span
                                 class="glyphicon glyphicon-envelope "></span>Liên hệ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black" href="/SP23B2_SOF3011_IT17319_war_exploded/nsx/index"><span
-                                class="glyphicon glyphicon-envelope "></span>Sản phẩm</a>
+                        <a class="nav-link text-black" href="/SP23B2_SOF3011_IT17319_war_exploded/admin"><span
+                                class="glyphicon glyphicon-envelope"></span>Blog</a>
                     </li>
 
 <%--                    <li class="nav-item">--%>
