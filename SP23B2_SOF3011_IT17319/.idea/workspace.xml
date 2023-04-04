@@ -267,7 +267,7 @@
       <workItem from="1680587842834" duration="1352000" />
       <workItem from="1680589228576" duration="176000" />
       <workItem from="1680589426036" duration="855000" />
-      <workItem from="1680623084698" duration="4607000" />
+      <workItem from="1680623084698" duration="8251000" />
     </task>
     <servers />
   </component>
@@ -301,6 +301,6 @@
     <SUITE FILE_PATH="coverage/SP23B2_SOF3011_IT17319$HibernateUtil__1_.ic" NAME="HibernateUtil (1) Coverage Results" MODIFIED="1680627095307" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>Utils.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/SP23B2_SOF3011_IT17319$Tomcat_10_1_7.ic" NAME="Tomcat 10.1.7 Coverage Results" MODIFIED="1680627153683" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/SP23B2_SOF3011_IT17319$Tomcat_10_1_7.ic" NAME="Tomcat 10.1.7 Coverage Results" MODIFIED="1680630837084" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

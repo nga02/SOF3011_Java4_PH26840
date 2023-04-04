@@ -41,7 +41,7 @@ public class LoginServlet extends HttpServlet {
             response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/login");
         } else {
             session.setAttribute("kh", kh);
-            response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/khach-hang/index");
+            response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/admin");
         }
     }
 }

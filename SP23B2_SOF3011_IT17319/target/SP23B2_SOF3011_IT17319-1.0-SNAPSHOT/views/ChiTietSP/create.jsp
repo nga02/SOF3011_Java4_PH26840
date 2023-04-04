@@ -76,7 +76,6 @@
                     </c:forEach>
                 </select>
         </div>
-
         <div class="form-group">
             <label>Màu sắc</label>
             <select name="id_MauSac" class="form-select">

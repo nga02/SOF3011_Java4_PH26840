@@ -39,14 +39,9 @@
                                 class="glyphicon glyphicon-envelope "></span>Liên hệ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-black" href="/SP23B2_SOF3011_IT17319_war_exploded/admin"><span
-                                class="glyphicon glyphicon-envelope"></span>Blog</a>
+                        <a class="nav-link text-black" aria-current="page" href="/SP23B2_SOF3011_IT17319_war_exploded/login"><span
+                                class="glyphicon  glyphicon-list "></span>Login</a>
                     </li>
-
-<%--                    <li class="nav-item">--%>
-<%--                        <a class="nav-link text-black" href="/SP23B2_SOF3011_IT17319_war_exploded/nhan-vien/index"><span--%>
-<%--                                class="glyphicon glyphicon-envelope "></span>NHÀ SẢN XUẤT</a>--%>
-<%--                    </li>--%>
                 </ul>
             </div>
 

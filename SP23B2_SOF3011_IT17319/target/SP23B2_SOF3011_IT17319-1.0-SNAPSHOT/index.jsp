@@ -11,7 +11,7 @@
     />
 </head>
 <body>
-<a href="admin">Website bán mỹ phẩm</a>
+<a href="login">Website bán mỹ phẩm</a>
 <%--<br>--%>
 <%--<a href="chuc-vu/index">Chức vụ</a>--%>
 <%--<br>--%>
