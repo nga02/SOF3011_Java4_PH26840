@@ -18,7 +18,7 @@ public class HelloServlet extends HttpServlet {
     ) throws IOException, ServletException {
         String name = "Ngalt";
         request.setAttribute("hoTen", name);
-        request.getRequestDispatcher("/views/hello.jsp")
+        request.getRequestDispatcher("/views/login.jsp")
                 .forward(request, response);
     }
 

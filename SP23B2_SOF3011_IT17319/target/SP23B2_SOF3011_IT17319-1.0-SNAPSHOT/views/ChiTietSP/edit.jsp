@@ -22,6 +22,34 @@
             color: red;
         }
     </style>
+    <script>
+        function Validate() {
+
+            var namBH = document.myForm.namBH.value.trim();
+            var moTa = document.myForm.mota.value.trim();
+            var sl_ton = document.myForm.soLuongTon.value.trim();
+            var gia_nhap = document.myForm.giaNhap.value.trim();
+            var gia_ban = document.myForm.giaBan.value.trim();
+
+
+            if (namBH == "") {
+                document.getElementById("error_namBH").innerHTML = "Không để trống trường năm bảo hành";
+            }
+            if (moTa == "") {
+                document.getElementById("error_mota").innerHTML = "Không để trống trường mô tả";
+            }
+            if (sl_ton == "") {
+                document.getElementById("error_slTon").innerHTML = "Không để trống trường số lượng tồn";
+            }
+            if (gia_nhap == "") {
+                document.getElementById("error_giaNhap").innerHTML = "Không để trống trường giá nhập";
+            }
+            if (gia_ban == "") {
+                document.getElementById("error_giaBan").innerHTML = "Không để trống trường giá bán";
+            }
+
+        }
+    </script>
 </head>
 <body>
 <h1 class="text-center">QUẢN LÝ CHI TIẾT SẢN PHẨM</h1>
@@ -98,7 +126,7 @@
         </div>
         <div class="row">
             <div class="col-6 text-center">
-                <button class="btn btn-primary">Update</button>
+                <button class="btn btn-primary" onclick="Validate()">Update</button>
 
             </div>
         </div>
