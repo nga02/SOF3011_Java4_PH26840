@@ -29,33 +29,36 @@
     </div>
     <table class="table mt-3">
         <thead class="table-primary text-center">
-    <tr>
+        <tr>
 
-        <th scope="col">Ma</th>
-        <th scope="col">Tên</th>
-        <th colspan="2">Action</th>
-    </tr>
-    </thead>
+            <th scope="col">Ma</th>
+            <th scope="col">Tên</th>
+            <th colspan="2">Action</th>
+        </tr>
+        </thead>
         <tbody class="text-center">
-    <c:if test="${f:length(ds) == 0}">
-        <span>Không có dữ liệu</span>
-    </c:if>
-    <c:if test="${f:length(ds) != 0}">
-        <c:forEach items="${ ds }" var="dsp">
-            <tr>
-                <td>${dsp.ma}</td>
-                <td>${dsp.ten}</td>
-                <td>
-                    <a href="/SP23B2_SOF3011_IT17319_war_exploded/dong-sp/delete?id=${dsp.id}" class="btn btn-danger">Delete</a>
-                </td>
-                <td>
-                    <a href="/SP23B2_SOF3011_IT17319_war_exploded/dong-sp/edit?id=${dsp.id}" class="btn btn-primary">Update</a>
-                </td>
-            </tr>
-        </c:forEach>
-    </c:if>
-    </tbody>
-</table>
+        <c:if test="${f:length(ds) == 0}">
+            <span>Không có dữ liệu</span>
+        </c:if>
+        <c:if test="${f:length(ds) != 0}">
+            <c:forEach items="${ ds }" var="dsp">
+                <tr>
+                    <td>${dsp.ma}</td>
+                    <td>${dsp.ten}</td>
+                    <td>
+                        <a href="/SP23B2_SOF3011_IT17319_war_exploded/dong-sp/delete?id=${dsp.id}"
+                           class="btn btn-danger">Delete</a>
+                    </td>
+                    <td>
+                        <a href="/SP23B2_SOF3011_IT17319_war_exploded/dong-sp/edit?id=${dsp.id}"
+                           class="btn btn-primary">Update</a>
+                    </td>
+                </tr>
+            </c:forEach>
+        </c:if>
+        </tbody>
+    </table>
+    <div class="alert text-dark">${ error }</div>
 </div>
 <script src="/js/bootstrap.min.js"></script>
 </body>

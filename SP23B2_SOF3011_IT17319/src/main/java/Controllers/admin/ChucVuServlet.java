@@ -1,16 +1,19 @@
 package controllers.admin;
 
 import DomainModel.ChucVu;
+import DomainModel.NhanVien;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 import java.util.UUID;
 
 import org.apache.commons.beanutils.BeanUtils;
 import repository.ChucVuRepository;
+import repository.NhanVienRepository;
 
 
 @WebServlet({
@@ -23,9 +26,11 @@ import repository.ChucVuRepository;
 })
 public class ChucVuServlet extends HttpServlet {
     private ChucVuRepository cvRepo;
+    private NhanVienRepository nvRepo;
 
     public ChucVuServlet() {
         this.cvRepo = new ChucVuRepository();
+        this.nvRepo = new NhanVienRepository();
     }
 
     @Override
@@ -70,8 +75,16 @@ public class ChucVuServlet extends HttpServlet {
     ) throws ServletException, IOException {
         UUID id_CV = UUID.fromString(request.getParameter("id"));
         ChucVu cv = this.cvRepo.findById(id_CV);
-        this.cvRepo.delete(cv);
+        List<NhanVien> nv = this.nvRepo.findByIdCV(cv.getId());
+        HttpSession session = request.getSession();
+        if(nv.size()!=0){
+            session.setAttribute("error","Không thể xoá do ràng buộc khoá ngoại");
+            return;
+        }else{
+            this.cvRepo.delete(cv);
+        }
         response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/chuc-vu/index");
+
     }
 
     private void index(

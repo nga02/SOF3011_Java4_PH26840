@@ -1,5 +1,6 @@
 package controllers.admin;
 
+import DomainModel.ChiTietSP;
 import DomainModel.DongSP;
 import DomainModel.NhaSX;
 import jakarta.servlet.*;
@@ -7,10 +8,12 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import org.apache.commons.beanutils.BeanUtils;
+import repository.ChiTietSPRepository;
 import repository.NSXRepository;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 import java.util.UUID;
 
 @WebServlet({
@@ -23,8 +26,11 @@ import java.util.UUID;
 })
 public class NSXServlet extends HttpServlet {
     private NSXRepository nsxRepo;
+    private ChiTietSPRepository ctspRepo;
+
     public NSXServlet(){
         this.nsxRepo=new NSXRepository();
+        this.ctspRepo=new ChiTietSPRepository();
     }
 
     @Override
@@ -65,7 +71,13 @@ public class NSXServlet extends HttpServlet {
     ) throws ServletException, IOException {
         UUID id_nsx= UUID.fromString(request.getParameter("id"));
         NhaSX nsx = this.nsxRepo.findById(id_nsx);
-        this.nsxRepo.delete(nsx);
+        List<ChiTietSP> nv = this.ctspRepo.findByIdNSX(nsx.getId());
+        HttpSession session = request.getSession();
+        if(nv.size()!=0){
+            session.setAttribute("error","Không thể xoá do ràng buộc khoá ngoại");
+        }else{
+            this.nsxRepo.delete(nsx);
+        }
         response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/nsx/index");
     }
     @Override

@@ -2,6 +2,7 @@ package controllers.admin;
 
 import DomainModel.ChucVu;
 import DomainModel.CuaHang;
+import DomainModel.NhanVien;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -10,9 +11,11 @@ import java.io.IOException;
 
 import org.apache.commons.beanutils.BeanUtils;
 import repository.CuaHangRepository;
+import repository.NhanVienRepository;
 import view_models.QLCuaHang;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 import java.util.UUID;
 
 @WebServlet({
@@ -25,9 +28,11 @@ import java.util.UUID;
 })
 public class CuaHangServlet extends HttpServlet {
     private CuaHangRepository chRepo;
+    private NhanVienRepository nvRepo;
 
     public CuaHangServlet() {
         this.chRepo = new CuaHangRepository();
+        this.nvRepo = new NhanVienRepository();
     }
 
     @Override
@@ -41,8 +46,8 @@ public class CuaHangServlet extends HttpServlet {
         }else if(uri.contains("edit")==true){
             this.edit(request,response);
         }
-        else if(uri.contains("delete")==true){
-            this.delete(request,response);
+        else if (uri.contains("delete") == true) {
+            this.delete(request, response);
         }
         else {
             this.index(request, response);
@@ -75,11 +80,18 @@ public class CuaHangServlet extends HttpServlet {
     ) throws ServletException, IOException {
         UUID id_CH = UUID.fromString(request.getParameter("id"));
         CuaHang ch = this.chRepo.findById(id_CH);
-        this.chRepo.delete(ch);
+        List<NhanVien> nv = this.nvRepo.findByIdCH(ch.getId());
+        HttpSession session = request.getSession();
+        if (nv.size() != 0) {
+            session.setAttribute("error", "Không thể xoá do ràng buộc khoá ngoại");
+            return;
+        } else {
+            this.chRepo.delete(ch);
+        }
         response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/cua-hang/index");
     }
 
-    private void index(
+        private void index(
             HttpServletRequest request,
             HttpServletResponse response
     ) throws ServletException, IOException {

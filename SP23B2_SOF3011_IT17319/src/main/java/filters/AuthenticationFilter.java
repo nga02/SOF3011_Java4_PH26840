@@ -10,7 +10,16 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebFilter({
-        "/khach-hang/*"
+        "/khach-hang/*",
+        "/chuc-vu/*",
+        "/nhan-vien/*",
+        "/cua-hang/*",
+        "/dong-sp/*",
+        "/mau-sac/*",
+        "/nsx/*",
+        "/san-pham/*",
+        "/chitiet-sp/*",
+
 })
 public class AuthenticationFilter implements Filter {
     public void init(FilterConfig config) throws ServletException {

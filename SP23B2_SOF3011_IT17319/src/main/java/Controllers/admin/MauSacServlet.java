@@ -1,15 +1,19 @@
 package controllers.admin;
 
+import DomainModel.ChiTietSP;
 import DomainModel.MauSac;
+import DomainModel.NhanVien;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import org.apache.commons.beanutils.BeanUtils;
+import repository.ChiTietSPRepository;
 import repository.MauSacRepository;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 import java.util.UUID;
 
 @WebServlet({
@@ -22,8 +26,10 @@ import java.util.UUID;
 })
 public class MauSacServlet extends HttpServlet {
     private MauSacRepository msRepo;
+    private ChiTietSPRepository ctspRepo;
     public MauSacServlet(){
         this.msRepo=new MauSacRepository();
+        this.ctspRepo=new ChiTietSPRepository();
     }
 
     @Override
@@ -66,7 +72,14 @@ public class MauSacServlet extends HttpServlet {
     ) throws ServletException, IOException {
         UUID id_ms = UUID.fromString(request.getParameter("id"));
         MauSac ms = this.msRepo.findById(id_ms);
-        this.msRepo.delete(ms);
+        List<ChiTietSP> nv = this.ctspRepo.findByIdMS(ms.getId());
+        HttpSession session = request.getSession();
+        if(nv.size()!=0){
+            session.setAttribute("error","Không thể xoá do ràng buộc khoá ngoại");
+            return;
+        }else{
+            this.msRepo.delete(ms);
+        }
         response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/mau-sac/index");
     }
 

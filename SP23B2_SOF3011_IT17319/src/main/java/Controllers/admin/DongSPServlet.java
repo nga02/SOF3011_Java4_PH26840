@@ -1,5 +1,6 @@
 package controllers.admin;
 
+import DomainModel.ChiTietSP;
 import DomainModel.ChucVu;
 import DomainModel.DongSP;
 import DomainModel.SanPham;
@@ -10,10 +11,12 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 
 import org.apache.commons.beanutils.BeanUtils;
+import repository.ChiTietSPRepository;
 import repository.DongSPRepository;
 import view_models.QLDongSP;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 import java.util.UUID;
 
 @WebServlet({
@@ -25,9 +28,11 @@ import java.util.UUID;
         "/dong-sp/delete",})
 public class DongSPServlet extends HttpServlet {
     private DongSPRepository dongSPRepo;
+    private ChiTietSPRepository ctspRepo;
 
     public DongSPServlet() {
         this.dongSPRepo = new DongSPRepository();
+        this.ctspRepo=new ChiTietSPRepository();
     }
 
     @Override
@@ -70,7 +75,14 @@ public class DongSPServlet extends HttpServlet {
     ) throws ServletException, IOException {
         UUID id_DSP = UUID.fromString(request.getParameter("id"));
         DongSP dsp = this.dongSPRepo.findById(id_DSP);
-        this.dongSPRepo.delete(dsp);
+        List<ChiTietSP> nv = this.ctspRepo.findByIdSP(dsp.getId());
+        HttpSession session = request.getSession();
+        if(nv.size()!=0){
+            session.setAttribute("error","Không thể xoá do ràng buộc khoá ngoại");
+            return;
+        }else {
+            this.dongSPRepo.delete(dsp);
+        }
         response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/dong-sp/index");
     }
 

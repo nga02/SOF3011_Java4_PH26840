@@ -27,6 +27,7 @@
         </div>
     </div>
     <table class="table mt-3">
+        <div class="alert text-dark">${ error }</div>
         <thead class="table-primary text-center">
         <tr>
             <th scope="col">Ma</th>
@@ -54,6 +55,7 @@
         </c:if>
         </tbody>
     </table>
+
 </div>
 <script src="/js/bootstrap.min.js"></script>
 </body>

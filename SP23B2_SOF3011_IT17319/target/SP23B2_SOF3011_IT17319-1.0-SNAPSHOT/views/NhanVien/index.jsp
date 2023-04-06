@@ -79,6 +79,7 @@
         </c:if>
         </tbody>
     </table>
+
 </div>
 <script src="/js/bootstrap.min.js"></script>
 </body>

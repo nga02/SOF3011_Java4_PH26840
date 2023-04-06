@@ -28,14 +28,16 @@
                         <h5 class="card-title text-center mb-5 fw-light fs-5">SIGN IN</h5>
                         <form>
                             <div class="form-floating mb-3">
+                                <label for="floatingInput">Mã người dùng</label>
                                 <input type="text" class="form-control" id="floatingInput"
                                        placeholder="ma" name = "ma">
-                                <label for="floatingInput">Mã người dùng:</label>
+
                             </div>
                             <div class="form-floating mb-3">
+                                <label for="floatingPassword">Password</label>
                                 <input type="password" class="form-control" id="floatingPassword" name = "matKhau"
                                        placeholder="Password">
-                                <label for="floatingPassword">Password</label>
+
                             </div>
 
                             <div class="d-grid">

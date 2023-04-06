@@ -61,4 +61,30 @@ public class ChiTietSPRepository {
         q.setParameter("Id", id);
         return q.getSingleResult();
     }
+
+    public List<ChiTietSP> findByIdMS(UUID id) {
+        String hql = "SELECT c FROM ChiTietSP c WHERE  c.idMauSac.id = ?1";
+        TypedQuery<ChiTietSP> q = this.hSession.createQuery(hql, ChiTietSP.class);
+        q.setParameter(1, id);
+        return q.getResultList();
+    }
+    public List<ChiTietSP> findByIdSP(UUID id) {
+        String hql = "SELECT c FROM ChiTietSP c WHERE  c.idSP.id = ?1";
+        TypedQuery<ChiTietSP> q = this.hSession.createQuery(hql, ChiTietSP.class);
+        q.setParameter(1, id);
+        return q.getResultList();
+    }
+    public List<ChiTietSP> findByIdNSX(UUID id) {
+        String hql = "SELECT c FROM ChiTietSP c WHERE  c.idNsx.id = ?1";
+        TypedQuery<ChiTietSP> q = this.hSession.createQuery(hql, ChiTietSP.class);
+        q.setParameter(1, id);
+        return q.getResultList();
+    }
+    public List<ChiTietSP> findByIdDSP(UUID id) {
+        String hql = "SELECT c FROM ChiTietSP c WHERE  c.idDongSP.id = ?1";
+        TypedQuery<ChiTietSP> q = this.hSession.createQuery(hql, ChiTietSP.class);
+        q.setParameter(1, id);
+        return q.getResultList();
+    }
+
 }

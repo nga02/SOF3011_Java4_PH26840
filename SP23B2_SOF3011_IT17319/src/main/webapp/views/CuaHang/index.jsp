@@ -29,36 +29,40 @@
     </div>
     <table class="table mt-3">
         <thead class="table-primary text-center">
-    <tr>
-        <th scope="col">Ma</th>
-        <th scope="col">Tên</th>
-        <th scope="col">Địa chỉ</th>
-        <th scope="col">Thành phố</th>
-        <th scope="col">Quốc gia</th>
-        <th colspan="2">Action</th>
-    </tr>
-    </thead>
+        <tr>
+            <th scope="col">Ma</th>
+            <th scope="col">Tên</th>
+            <th scope="col">Địa chỉ</th>
+            <th scope="col">Thành phố</th>
+            <th scope="col">Quốc gia</th>
+            <th colspan="2">Action</th>
+        </tr>
+        </thead>
         <tbody class="text-center">
-    <c:if test="${f:length(ds)==0}"><span>Không có dữ liệu</span></c:if>
-    <c:if test="${f:length(ds)!=0}">
-        <c:forEach items="${ds}" var="ch">
-            <tr>
-                <td>${ch.ma}</td>
-                <td>${ch.ten}</td>
-                <td>${ch.diaChi}</td>
-                <td>${ch.thanhPho}</td>
-                <td>${ch.quocGia}</td>
-                <td>
-                    <a href="/SP23B2_SOF3011_IT17319_war_exploded/cua-hang/delete?id=${ch.id}" class="btn btn-danger">Delete</a>
-                </td>
-                <td>
-                    <a href="/SP23B2_SOF3011_IT17319_war_exploded/cua-hang/edit?id=${ch.id}" class="btn btn-primary">Update</a>
-                </td>
-            </tr>
-        </c:forEach>
-    </c:if>
-    </tbody>
-</table>
+        <c:if test="${f:length(ds)==0}"><span>Không có dữ liệu</span></c:if>
+        <c:if test="${f:length(ds)!=0}">
+            <c:forEach items="${ds}" var="ch">
+                <tr>
+                    <td>${ch.ma}</td>
+                    <td>${ch.ten}</td>
+                    <td>${ch.diaChi}</td>
+                    <td>${ch.thanhPho}</td>
+                    <td>${ch.quocGia}</td>
+                    <td>
+                        <a href="/SP23B2_SOF3011_IT17319_war_exploded/cua-hang/delete?id=${ch.id}"
+                           class="btn btn-danger">Delete</a>
+                    </td>
+                    <td>
+                        <a href="/SP23B2_SOF3011_IT17319_war_exploded/cua-hang/edit?id=${ch.id}"
+                           class="btn btn-primary">Update</a>
+                    </td>
+                </tr>
+            </c:forEach>
+        </c:if>
+        </tbody>
+        <div class="alert text-dark">${ error }</div>
+    </table>
+
 </div>
 <script src="/js/bootstrap.min.js"></script>
 </body>

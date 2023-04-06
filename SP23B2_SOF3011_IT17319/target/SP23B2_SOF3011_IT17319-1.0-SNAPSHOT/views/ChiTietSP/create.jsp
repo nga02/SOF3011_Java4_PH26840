@@ -34,20 +34,27 @@
 
             if (namBH == "") {
                 document.getElementById("error_namBH").innerHTML = "Không để trống trường năm bảo hành";
+            }else if(namBH < 0){
+                document.getElementById("error_namBH").innerHTML = "Năm bảo hành phải lớn hơn hoặc bằng 0";
             }
-            if (moTa == "") {
+            else if (moTa == "") {
                 document.getElementById("error_mota").innerHTML = "Không để trống trường mô tả";
             }
-            if (sl_ton == "") {
+            else  if (sl_ton == "") {
                 document.getElementById("error_slTon").innerHTML = "Không để trống trường số lượng tồn";
             }
-            if (gia_nhap == "") {
+            else if (gia_nhap == "") {
                 document.getElementById("error_giaNhap").innerHTML = "Không để trống trường giá nhập";
+            }else if(gia_nhap < 0){
+                document.getElementById("error_giaNhap").innerHTML = "Giá nhập phải lớn hơn 0";
             }
-            if (gia_ban == "") {
+            else if (gia_ban == "") {
                 document.getElementById("error_giaBan").innerHTML = "Không để trống trường giá bán";
+            }else if(gia_ban < 0){
+                 document.getElementById("gia_ban").innerHTML = "Giá bán phải lớn hơn 0";
+            }else if(gia_nhap < gia_ban){
+                document.getElementById("gia_ban").innerHTML = "Giá bán phải lớn hơn hoặc bằng giá nhập";
             }
-
         }
     </script>
 </head>
@@ -96,7 +103,7 @@
 
         <div class="form-group">
             <label>Năm bảo hành</label>
-            <input type="number" min="0" max="100" name="namBH" class="form-control" placeholder="" required/>
+            <input type="number"  name="namBH" class="form-control" placeholder="" required/>
             <p id="error_namBH"></p>
         </div>
 

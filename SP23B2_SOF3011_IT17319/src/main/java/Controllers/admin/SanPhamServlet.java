@@ -1,5 +1,6 @@
 package controllers.admin;
 
+import DomainModel.ChiTietSP;
 import DomainModel.NhaSX;
 import DomainModel.SanPham;
 import jakarta.servlet.*;
@@ -7,10 +8,12 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import org.apache.commons.beanutils.BeanUtils;
+import repository.ChiTietSPRepository;
 import repository.SanPhamRepository;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 import java.util.UUID;
 
 @WebServlet({
@@ -23,8 +26,10 @@ import java.util.UUID;
 })
 public class SanPhamServlet extends HttpServlet {
     private SanPhamRepository spRepo;
+    private ChiTietSPRepository ctspRepo;
     public SanPhamServlet(){
         this.spRepo = new SanPhamRepository();
+        this.ctspRepo=new ChiTietSPRepository();
     }
     @Override
     protected void doGet(
@@ -70,7 +75,14 @@ public class SanPhamServlet extends HttpServlet {
     ) throws ServletException, IOException {
         UUID id_nsx= UUID.fromString(request.getParameter("id"));
         SanPham sp = this.spRepo.findById(id_nsx);
-        this.spRepo.delete(sp);
+        List<ChiTietSP> nv = this.ctspRepo.findByIdSP(sp.getId());
+        HttpSession session = request.getSession();
+        if(nv.size()!=0){
+            session.setAttribute("error","Không thể xoá do ràng buộc khoá ngoại");
+        }else{
+            this.spRepo.delete(sp);
+        }
+
         response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/san-pham/index");
     }
 

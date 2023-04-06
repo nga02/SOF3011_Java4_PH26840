@@ -73,4 +73,17 @@ public class NhanVienRepository {
         q.setParameter(1, ma);
         return q.getSingleResult();
     }
+
+    public List<NhanVien> findByIdCV(UUID id) {
+        String hql = "SELECT c FROM NhanVien c WHERE  c.idCV.id = ?1";
+        TypedQuery<NhanVien> q = this.hSession.createQuery(hql, NhanVien.class);
+        q.setParameter(1, id);
+        return q.getResultList();
+    }
+    public List<NhanVien> findByIdCH(UUID id) {
+        String hql = "SELECT c FROM NhanVien c WHERE  c.idCH.id = ?1";
+        TypedQuery<NhanVien> q = this.hSession.createQuery(hql, NhanVien.class);
+        q.setParameter(1, id);
+        return q.getResultList();
+    }
 }
