@@ -75,13 +75,13 @@ public class DongSPServlet extends HttpServlet {
     ) throws ServletException, IOException {
         UUID id_DSP = UUID.fromString(request.getParameter("id"));
         DongSP dsp = this.dongSPRepo.findById(id_DSP);
-        List<ChiTietSP> nv = this.ctspRepo.findByIdSP(dsp.getId());
+        List<ChiTietSP> ctsp = this.ctspRepo.findByIdDSP(dsp.getId());
         HttpSession session = request.getSession();
-        if(nv.size()!=0){
-            session.setAttribute("error31","Không thể xoá do ràng buộc khoá ngoại");
+        if(ctsp.size()!=0){
+            session.setAttribute("errorD","Không thể xoá do ràng buộc khoá ngoại");
         }else{
             this.dongSPRepo.delete(dsp);
-            session.setAttribute("error31","");
+            session.setAttribute("errorD","");
         }
         response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/dong-sp/index");
     }
@@ -94,7 +94,6 @@ public class DongSPServlet extends HttpServlet {
         request.setAttribute("view", "/views/DongSP/index.jsp");
         request.getRequestDispatcher("/views/layout.jsp")
                 .forward(request, response);
-
     }
 
     @Override
@@ -108,8 +107,6 @@ public class DongSPServlet extends HttpServlet {
             response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/dong-sp/index");
         }
     }
-
-
 
     private void store(HttpServletRequest request,
                        HttpServletResponse response

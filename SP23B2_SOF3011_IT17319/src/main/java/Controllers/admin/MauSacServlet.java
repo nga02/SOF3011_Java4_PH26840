@@ -76,7 +76,6 @@ public class MauSacServlet extends HttpServlet {
         HttpSession session = request.getSession();
         if(nv.size()!=0){
             session.setAttribute("error4","Không thể xoá do ràng buộc khoá ngoại");
-
         }else{
             this.msRepo.delete(ms);
             session.setAttribute("error4","");

@@ -99,17 +99,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Tomcat 10.1.7" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.1.7" ALTERNATIVE_JRE_ENABLED="false">
       <deployment>
         <artifact name="SP23B2_SOF3011_IT17319:war exploded">
@@ -274,6 +263,7 @@
       <workItem from="1680754991464" duration="804000" />
       <workItem from="1680756475961" duration="5096000" />
       <workItem from="1680780008797" duration="2459000" />
+      <workItem from="1680796157697" duration="3455000" />
     </task>
     <servers />
   </component>
