@@ -99,6 +99,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Tomcat 10.1.7" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.1.7" ALTERNATIVE_JRE_ENABLED="false">
       <deployment>
         <artifact name="SP23B2_SOF3011_IT17319:war exploded">
@@ -262,6 +273,7 @@
       <workItem from="1680718218165" duration="14000" />
       <workItem from="1680754991464" duration="804000" />
       <workItem from="1680756475961" duration="5096000" />
+      <workItem from="1680780008797" duration="2249000" />
     </task>
     <servers />
   </component>
@@ -284,6 +296,6 @@
     <SUITE FILE_PATH="coverage/SP23B2_SOF3011_IT17319$HibernateUtil__1_.ic" NAME="HibernateUtil (1) Coverage Results" MODIFIED="1680627095307" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>Utils.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/SP23B2_SOF3011_IT17319$Tomcat_10_1_7.ic" NAME="Tomcat 10.1.7 Coverage Results" MODIFIED="1680761049297" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/SP23B2_SOF3011_IT17319$Tomcat_10_1_7.ic" NAME="Tomcat 10.1.7 Coverage Results" MODIFIED="1680782192696" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

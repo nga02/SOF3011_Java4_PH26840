@@ -20,7 +20,6 @@
 </head>
 <body>
 <div class="col-8 offset-2 mt-5">
-
     <h1 class="text-center"><b>DANH SÁCH CỬA HÀNG</b></h1>
     <div class="row">
         <div class="col-6">
@@ -60,9 +59,9 @@
             </c:forEach>
         </c:if>
         </tbody>
-        <div class="alert text-dark">${ error }</div>
-    </table>
 
+    </table>
+    <div class="alert text-dark">${ error2 }</div>
 </div>
 <script src="/js/bootstrap.min.js"></script>
 </body>

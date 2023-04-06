@@ -79,9 +79,9 @@ public class ChucVuServlet extends HttpServlet {
         HttpSession session = request.getSession();
         if(nv.size()!=0){
             session.setAttribute("error","Không thể xoá do ràng buộc khoá ngoại");
-            return;
         }else{
             this.cvRepo.delete(cv);
+            session.setAttribute("error","");
         }
         response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/chuc-vu/index");
 

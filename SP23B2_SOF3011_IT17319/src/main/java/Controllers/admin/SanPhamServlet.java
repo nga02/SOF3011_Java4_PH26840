@@ -78,9 +78,10 @@ public class SanPhamServlet extends HttpServlet {
         List<ChiTietSP> nv = this.ctspRepo.findByIdSP(sp.getId());
         HttpSession session = request.getSession();
         if(nv.size()!=0){
-            session.setAttribute("error","Không thể xoá do ràng buộc khoá ngoại");
+            session.setAttribute("error1","Không thể xoá do ràng buộc khoá ngoại");
         }else{
             this.spRepo.delete(sp);
+            session.setAttribute("error1","");
         }
 
         response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/san-pham/index");

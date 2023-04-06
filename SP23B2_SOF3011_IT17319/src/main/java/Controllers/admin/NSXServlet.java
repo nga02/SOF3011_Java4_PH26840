@@ -74,9 +74,10 @@ public class NSXServlet extends HttpServlet {
         List<ChiTietSP> nv = this.ctspRepo.findByIdNSX(nsx.getId());
         HttpSession session = request.getSession();
         if(nv.size()!=0){
-            session.setAttribute("error","Không thể xoá do ràng buộc khoá ngoại");
+            session.setAttribute("error5","Không thể xoá do ràng buộc khoá ngoại");
         }else{
             this.nsxRepo.delete(nsx);
+            session.setAttribute("error5","");
         }
         response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/nsx/index");
     }

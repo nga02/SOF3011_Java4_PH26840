@@ -58,7 +58,7 @@
         </c:if>
         </tbody>
     </table>
-    <div class="alert text-dark">${ error }</div>
+    <div class="alert text-dark">${error31}</div>
 </div>
 <script src="/js/bootstrap.min.js"></script>
 </body>

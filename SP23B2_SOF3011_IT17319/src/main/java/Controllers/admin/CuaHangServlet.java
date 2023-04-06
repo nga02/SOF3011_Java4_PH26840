@@ -81,13 +81,14 @@ public class CuaHangServlet extends HttpServlet {
         UUID id_CH = UUID.fromString(request.getParameter("id"));
         CuaHang ch = this.chRepo.findById(id_CH);
         List<NhanVien> nv = this.nvRepo.findByIdCH(ch.getId());
-        HttpSession session = request.getSession();
+       HttpSession session = request.getSession();
         if (nv.size() != 0) {
-            session.setAttribute("error", "Không thể xoá do ràng buộc khoá ngoại");
-            return;
+            session.setAttribute("error2", "Không thể xoá do ràng buộc khoá ngoại");
         } else {
             this.chRepo.delete(ch);
+            session.setAttribute("error2", "");
         }
+        this.chRepo.delete(ch);
         response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/cua-hang/index");
     }
 

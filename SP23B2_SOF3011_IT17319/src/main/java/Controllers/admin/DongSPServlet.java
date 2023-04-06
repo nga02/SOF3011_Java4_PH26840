@@ -78,10 +78,10 @@ public class DongSPServlet extends HttpServlet {
         List<ChiTietSP> nv = this.ctspRepo.findByIdSP(dsp.getId());
         HttpSession session = request.getSession();
         if(nv.size()!=0){
-            session.setAttribute("error","Không thể xoá do ràng buộc khoá ngoại");
-            return;
-        }else {
+            session.setAttribute("error31","Không thể xoá do ràng buộc khoá ngoại");
+        }else{
             this.dongSPRepo.delete(dsp);
+            session.setAttribute("error31","");
         }
         response.sendRedirect("/SP23B2_SOF3011_IT17319_war_exploded/dong-sp/index");
     }
